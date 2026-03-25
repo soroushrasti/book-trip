@@ -17,6 +17,10 @@ export const metadata: Metadata = {
   title: "Creative Storytelling & Painting for Children",
   description:
     "Meertalige storytelling en creatieve kunstworkshops voor kinderen in Maastricht",
+  icons: {
+    icon: "/icon.png",
+    apple: "/icon.png",
+  },
 };
 
 export default function RootLayout({
