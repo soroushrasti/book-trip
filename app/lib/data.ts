@@ -56,7 +56,7 @@ export async function getAllSessionStats(): Promise<
     "2026-10-17",
   ];
 
-  const stats = {} as Record<SessionId, { registeredCount: number; waitingListCount: number; spotsAvailable: number; isFull: boolean }>;
+  const stats: Record<SessionId, { registeredCount: number; waitingListCount: number; spotsAvailable: number; isFull: boolean }> = {} as any;
 
   for (const sessionId of sessionIds) {
     const session = data[sessionId];

@@ -1,3 +1,4 @@
+import Image from "next/image";
 import Link from "next/link";
 import { getAllSessionStats } from "./lib/data";
 import { Language, SessionId, SESSIONS, MAX_CAPACITY } from "./lib/types";
@@ -9,12 +10,19 @@ type Session = {
   group: string;
 };
 
+type Book = {
+  title: string;
+  ageGroup: string;
+};
+
 type Content = {
   announcement: string;
   introQuestion: string;
   introBody: string;
   offerTitle: string;
   offers: string[];
+  booksTitle: string;
+  books: Book[];
   scheduleTitle: string;
   sessions: Session[];
   scheduleNote: string;
@@ -54,6 +62,14 @@ const contentByLanguage: Record<Language, Content> = {
       "Creatieve kunstactiviteiten",
       "Ontwikkeling van zelfvertrouwen en expressie",
       "Een veilige en inspirerende omgeving",
+    ],
+    booksTitle: "Boeken:",
+    books: [
+      { title: "De mooiste vis van de zee", ageGroup: "Peuters (2.5 - t/m 3 jaar)" },
+      { title: "Draw me a star", ageGroup: "Groep 1 en 2" },
+      { title: "The tiny seed", ageGroup: "Groep 3-4" },
+      { title: "Flotsam", ageGroup: "Groep 5-6" },
+      { title: "The little prince", ageGroup: "Groep 7-8" },
     ],
     scheduleTitle: "Data & leeftijdsgroepen:",
     sessions: [
@@ -112,6 +128,14 @@ const contentByLanguage: Record<Language, Content> = {
       "Building confidence and self-expression",
       "A safe and inspiring environment",
     ],
+    booksTitle: "Books:",
+    books: [
+      { title: "The Rainbow Fish", ageGroup: "Toddlers (2.5 - 3 years)" },
+      { title: "Draw me a star", ageGroup: "Group 1 and 2" },
+      { title: "The tiny seed", ageGroup: "Group 3-4" },
+      { title: "Flotsam", ageGroup: "Group 5-6" },
+      { title: "The little prince", ageGroup: "Group 7-8" },
+    ],
     scheduleTitle: "Dates & age groups:",
     sessions: [
       {
@@ -166,6 +190,14 @@ const contentByLanguage: Record<Language, Content> = {
       "فعالیت های هنری خلاقانه",
       "تقویت اعتماد به نفس و بیان هنری",
       "محیطی امن و الهام بخش",
+    ],
+    booksTitle: "کتاب‌ها:",
+    books: [
+      { title: "زیباترین ماهی دریا", ageGroup: "۲.۵ تا ۳ سال" },
+      { title: "برایم یک ستاره بکش", ageGroup: "پایه ۱ و ۲" },
+      { title: "دانه کوچک", ageGroup: "پایه ۳ و ۴" },
+      { title: "Flotsam", ageGroup: "پایه ۵ و ۶" },
+      { title: "شازده کوچولو", ageGroup: "پایه ۷ و ۸" },
     ],
     scheduleTitle: "تاریخ ها و گروه های سنی:",
     sessions: [
@@ -230,6 +262,18 @@ export default async function WorkshopHome({ language }: WorkshopHomeProps) {
   return (
     <main className="mx-auto w-full max-w-4xl px-4 py-8 sm:px-6 lg:px-8">
       <div className="rounded-2xl border border-black/10 bg-white p-6 shadow-sm dark:border-white/20 dark:bg-zinc-900 sm:p-8">
+        {/* Hero Image */}
+        <div className="mb-6 flex justify-center">
+          <Image
+            src="/img.png"
+            alt="Creative Storytelling & Painting for Children"
+            width={600}
+            height={400}
+            className="rounded-xl shadow-lg"
+            priority
+          />
+        </div>
+
         <div className="mb-6 flex flex-wrap items-center justify-between gap-3">
           <h1 className="text-2xl font-bold sm:text-3xl">
             🎨✨ Creative Storytelling & Painting for Children ✨🎨
@@ -277,6 +321,18 @@ export default async function WorkshopHome({ language }: WorkshopHomeProps) {
                 <li key={item}>{item}</li>
               ))}
             </ul>
+          </div>
+
+          {/* Books Section */}
+          <div>
+            <h2 className="text-lg font-semibold">📚 {content.booksTitle}</h2>
+            <ol className="mt-2 list-decimal space-y-1 pl-6">
+              {content.books.map((book, index) => (
+                <li key={index}>
+                  <span className="font-medium">{book.title}</span> — {book.ageGroup}
+                </li>
+              ))}
+            </ol>
           </div>
 
           {/* Interactive Session Cards */}

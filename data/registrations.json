@@ -1,8 +1,40 @@
 {
-  "2026-04-25": { "registrations": [], "waitingList": [] },
-  "2026-05-23": { "registrations": [], "waitingList": [] },
-  "2026-08-22": { "registrations": [], "waitingList": [] },
-  "2026-09-19": { "registrations": [], "waitingList": [] },
-  "2026-10-17": { "registrations": [], "waitingList": [] }
+  "2026-04-25": {
+    "registrations": [
+      {
+        "sessionId": "2026-04-25",
+        "firstName": "Sorous",
+        "lastName": "",
+        "phoneNumber": "091132",
+        "email": "",
+        "address": {
+          "street": "",
+          "houseNumber": "",
+          "postCode": "",
+          "city": "",
+          "country": "Netherlands"
+        },
+        "id": "601bc9ba-a2c0-4ecb-a3a1-e788b62f62fc",
+        "createdAt": "2026-03-25T14:27:10.661Z",
+        "isWaitingList": false
+      }
+    ],
+    "waitingList": []
+  },
+  "2026-05-23": {
+    "registrations": [],
+    "waitingList": []
+  },
+  "2026-08-22": {
+    "registrations": [],
+    "waitingList": []
+  },
+  "2026-09-19": {
+    "registrations": [],
+    "waitingList": []
+  },
+  "2026-10-17": {
+    "registrations": [],
+    "waitingList": []
+  }
 }
-

@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
+import Image from "next/image";
 import "./globals.css";
 
 const geistSans = Geist({
@@ -28,7 +29,20 @@ export default function RootLayout({
       lang="nl"
       className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}
     >
-      <body className="min-h-full flex flex-col">{children}</body>
+      <body className="min-h-full flex flex-col relative">
+        {/* Corner Icon */}
+        <div className="fixed top-4 left-4 z-50">
+          <Image
+            src="/icon.png"
+            alt="Creative Storytelling & Painting"
+            width={80}
+            height={80}
+            className="rounded-full shadow-lg"
+            priority
+          />
+        </div>
+        <div className="flex-1">{children}</div>
+      </body>
     </html>
   );
 }
