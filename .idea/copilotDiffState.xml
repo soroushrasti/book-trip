@@ -3,14 +3,6 @@
   <component name="CopilotDiffPersistence">
     <option name="pendingDiffs">
       <map>
-        <entry key="$PROJECT_DIR$/railway.toml">
-          <value>
-            <PendingDiffInfo>
-              <option name="filePath" value="$PROJECT_DIR$/railway.toml" />
-              <option name="updatedContent" value="[build]&#10;# Disable build cache to always get fresh images&#10;nixpacksVersion = &quot;1.38.0&quot;&#10;&#10;[build.nixpacksPlan]&#10;env = { NIXPACKS_NO_CACHE = &quot;1&quot; }&#10;&#10;[deploy]&#10;# Restart command&#10;restartPolicyType = &quot;ON_FAILURE&quot;&#10;restartPolicyMaxRetries = 3&#10;" />
-            </PendingDiffInfo>
-          </value>
-        </entry>
         <entry key="/data (snapshot).ts">
           <value>
             <PendingDiffInfo>
