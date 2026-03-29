@@ -67,11 +67,11 @@ const contentByLanguage: Record<Language, Content> = {
     ],
     booksTitle: "Boeken:",
     books: [
-      { title: "De mooiste vis van de zee", ageGroup: "Peuters (2.5 - t/m 3 jaar)" },
-      { title: "Draw me a star", ageGroup: "Groep 1 en 2" },
-      { title: "The tiny seed", ageGroup: "Groep 3-4" },
-      { title: "Flotsam", ageGroup: "Groep 5-6" },
-      { title: "The little prince", ageGroup: "Groep 7-8" },
+      { title: "De mooiste vis van de zee", ageGroup: "Groep 1-2" },
+      { title: "Billy the Bat's big adventure", ageGroup: "Groep 1-2" },
+      { title: "Draw me a star", ageGroup: "Groep 3-4" },
+      { title: "The tiny seed", ageGroup: "Groep 5-6" },
+      { title: "Flotsam", ageGroup: "Groep 7-8" },
     ],
     teamTitle: "Maak kennis met het team",
     team: [
@@ -95,26 +95,26 @@ const contentByLanguage: Record<Language, Content> = {
       {
         date: "25 april 2026",
         book: "De mooiste vis van de zee",
-        group: "Peuters (2.5 - 3 jaar)",
+        group: "Groep 1-2",
       },
       {
         date: "23 mei 2026",
-        book: "Draw me a star",
+        book: "Billy the Bat's big adventure",
         group: "Groep 1-2",
       },
       {
         date: "22 augustus 2026",
-        book: "The tiny seed",
+        book: "Draw me a star",
         group: "Groep 3-4",
       },
       {
         date: "19 september 2026",
-        book: "Flotsam",
+        book: "The tiny seed",
         group: "Groep 5-6",
       },
       {
         date: "17 oktober 2026",
-        book: "The little prince",
+        book: "Flotsam",
         group: "Groep 7-8",
       },
     ],
@@ -149,11 +149,11 @@ const contentByLanguage: Record<Language, Content> = {
     ],
     booksTitle: "Books:",
     books: [
-      { title: "The Rainbow Fish", ageGroup: "Toddlers (2.5 - 3 years)" },
-      { title: "Draw me a star", ageGroup: "Group 1 and 2" },
-      { title: "The tiny seed", ageGroup: "Group 3-4" },
-      { title: "Flotsam", ageGroup: "Group 5-6" },
-      { title: "The little prince", ageGroup: "Group 7-8" },
+      { title: "The Rainbow Fish", ageGroup: "Group 1-2" },
+      { title: "Billy the Bat's big adventure", ageGroup: "Group 1-2" },
+      { title: "Draw me a star", ageGroup: "Group 3-4" },
+      { title: "The tiny seed", ageGroup: "Group 5-6" },
+      { title: "Flotsam", ageGroup: "Group 7-8" },
     ],
     teamTitle: "Meet the Team",
     team: [
@@ -177,26 +177,26 @@ const contentByLanguage: Record<Language, Content> = {
       {
         date: "April 25, 2026",
         book: "The Rainbow Fish",
-        group: "Toddlers (2.5 - 3 years)",
+        group: "Group 1-2",
       },
       {
         date: "May 23, 2026",
-        book: "Draw me a star",
+        book: "Billy the Bat's big adventure",
         group: "Group 1-2",
       },
       {
         date: "August 22, 2026",
-        book: "The tiny seed",
+        book: "Draw me a star",
         group: "Group 3-4",
       },
       {
         date: "September 19, 2026",
-        book: "Flotsam",
+        book: "The tiny seed",
         group: "Group 5-6",
       },
       {
         date: "October 17, 2026",
-        book: "The little prince",
+        book: "Flotsam",
         group: "Group 7-8",
       },
     ],
@@ -229,11 +229,11 @@ const contentByLanguage: Record<Language, Content> = {
     ],
     booksTitle: "کتاب‌ها:",
     books: [
-      { title: "زیباترین ماهی دریا", ageGroup: "۲.۵ تا ۳ سال" },
-      { title: "برایم یک ستاره بکش", ageGroup: "پایه ۱ و ۲" },
-      { title: "دانه کوچک", ageGroup: "پایه ۳ و ۴" },
-      { title: "Flotsam", ageGroup: "پایه ۵ و ۶" },
-      { title: "شازده کوچولو", ageGroup: "پایه ۷ و ۸" },
+      { title: "زیباترین ماهی دریا", ageGroup: "پایه ۱ و ۲" },
+      { title: "Billy the Bat's big adventure", ageGroup: "پایه ۱ و ۲" },
+      { title: "برایم یک ستاره بکش", ageGroup: "پایه ۳ و ۴" },
+      { title: "دانه کوچک", ageGroup: "پایه ۵ و ۶" },
+      { title: "Flotsam", ageGroup: "پایه ۷ و ۸" },
     ],
     teamTitle: "با تیم ما آشنا شوید",
     team: [
@@ -257,26 +257,26 @@ const contentByLanguage: Record<Language, Content> = {
       {
         date: "۲۵ آوریل ۲۰۲۶",
         book: "زیباترین ماهی دریا",
-        group: "گروه سنی: ۲.۵ تا ۳ سال",
+        group: "گروه سنی: پایه ۱ و ۲",
       },
       {
         date: "۲۳ مه ۲۰۲۶",
-        book: "برایم یک ستاره بکش",
+        book: "Billy the Bat's big adventure",
         group: "گروه سنی: پایه ۱ و ۲",
       },
       {
         date: "۲۲ آگوست ۲۰۲۶",
-        book: "دانه کوچک",
+        book: "برایم یک ستاره بکش",
         group: "گروه سنی: پایه ۳ و ۴",
       },
       {
         date: "۱۹ سپتامبر ۲۰۲۶",
-        book: "Flotsam",
+        book: "دانه کوچک",
         group: "گروه سنی: پایه ۵ و ۶",
       },
       {
         date: "۱۷ اکتبر ۲۰۲۶",
-        book: "شازده کوچولو",
+        book: "Flotsam",
         group: "گروه سنی: پایه ۷ و ۸",
       },
     ],
@@ -474,30 +474,26 @@ export default async function WorkshopHome({ language }: WorkshopHomeProps) {
                     className="group relative overflow-hidden rounded-2xl border-2 border-purple-300 hover:border-pink-500 transition-all duration-300 hover:shadow-2xl hover:scale-[1.02] bg-white dark:bg-zinc-800"
                   >
                     {/* Session Image */}
-                    <div className="relative h-48 w-full overflow-hidden">
+                    <div className="relative aspect-[4/3] w-full overflow-hidden bg-gradient-to-br from-purple-100 to-pink-100 dark:from-zinc-700 dark:to-zinc-800">
                       <Image
                         src={session.image}
                         alt={contentSession.book}
                         fill
-                        className="object-cover object-center group-hover:scale-105 transition-transform duration-300"
+                        className="object-contain group-hover:scale-105 transition-transform duration-300"
                       />
-                      <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent" />
-                      {/* Book title on image */}
-                      <div className="absolute bottom-2 left-2 right-2">
-                        <p className="text-white font-bold text-sm drop-shadow-lg flex items-center gap-1">
-                          <span>📖</span> {contentSession.book}
-                        </p>
-                      </div>
                       {/* Exhibition badge for last session */}
                       {session.isExhibition && (
                         <div className="absolute top-2 right-2 bg-yellow-400 text-black text-xs font-bold px-2 py-1 rounded-full">
-                          🎨 نمایشگاه
+                          🎨 {t.exhibition}
                         </div>
                       )}
                     </div>
                     
                     {/* Content */}
                     <div className="p-3 space-y-1 bg-gradient-to-br from-yellow-50 to-pink-50 dark:from-zinc-800 dark:to-zinc-800">
+                      <p className="font-bold text-purple-700 dark:text-purple-300 flex items-center gap-1 text-sm">
+                        <span>📖</span> {contentSession.book}
+                      </p>
                       <p className="font-bold text-amber-600 dark:text-amber-400 flex items-center gap-1 text-sm">
                         <span>📅</span> {contentSession.date}
                       </p>

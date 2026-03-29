@@ -46,6 +46,7 @@ export type Translations = {
   dateLabel: string;
   bookLabel: string;
   ageGroupLabel: string;
+  exhibition: string;
 };
 
 export const translations: Record<Language, Translations> = {
@@ -87,6 +88,7 @@ export const translations: Record<Language, Translations> = {
     dateLabel: "Datum",
     bookLabel: "Boek",
     ageGroupLabel: "Leeftijdsgroep",
+    exhibition: "Tentoonstelling",
   },
   en: {
     spotsAvailable: "spots available",
@@ -126,6 +128,7 @@ export const translations: Record<Language, Translations> = {
     dateLabel: "Date",
     bookLabel: "Book",
     ageGroupLabel: "Age group",
+    exhibition: "Exhibition",
   },
   fa: {
     spotsAvailable: "جای خالی",
@@ -165,6 +168,7 @@ export const translations: Record<Language, Translations> = {
     dateLabel: "تاریخ",
     bookLabel: "کتاب",
     ageGroupLabel: "گروه سنی",
+    exhibition: "نمایشگاه",
   },
 };
 

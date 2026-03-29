@@ -58,25 +58,25 @@ export default function RegistrationForm({
   // Localized session info
   const localizedSessions: Record<Language, Record<SessionId, { book: string; group: string }>> = {
     nl: {
-      "2026-04-25": { book: "De mooiste vis van de zee", group: "Peuters (2.5 - 3 jaar)" },
-      "2026-05-23": { book: "Draw me a star", group: "Groep 1-2" },
-      "2026-08-22": { book: "The tiny seed", group: "Groep 3-4" },
-      "2026-09-19": { book: "Flotsam", group: "Groep 5-6" },
-      "2026-10-17": { book: "The little prince", group: "Groep 7-8" },
+      "2026-04-25": { book: "De mooiste vis van de zee", group: "Groep 1-2" },
+      "2026-05-23": { book: "Billy the Bat's big adventure", group: "Groep 1-2" },
+      "2026-08-22": { book: "Draw me a star", group: "Groep 3-4" },
+      "2026-09-19": { book: "The tiny seed", group: "Groep 5-6" },
+      "2026-10-17": { book: "Flotsam", group: "Groep 7-8" },
     },
     en: {
-      "2026-04-25": { book: "The Rainbow Fish", group: "Toddlers (2.5 - 3 years)" },
-      "2026-05-23": { book: "Draw me a star", group: "Group 1-2" },
-      "2026-08-22": { book: "The tiny seed", group: "Group 3-4" },
-      "2026-09-19": { book: "Flotsam", group: "Group 5-6" },
-      "2026-10-17": { book: "The little prince", group: "Group 7-8" },
+      "2026-04-25": { book: "The Rainbow Fish", group: "Group 1-2" },
+      "2026-05-23": { book: "Billy the Bat's big adventure", group: "Group 1-2" },
+      "2026-08-22": { book: "Draw me a star", group: "Group 3-4" },
+      "2026-09-19": { book: "The tiny seed", group: "Group 5-6" },
+      "2026-10-17": { book: "Flotsam", group: "Group 7-8" },
     },
     fa: {
-      "2026-04-25": { book: "زیباترین ماهی دریا", group: "گروه سنی: ۲.۵ تا ۳ سال" },
-      "2026-05-23": { book: "برایم یک ستاره بکش", group: "گروه سنی: پایه ۱ و ۲" },
-      "2026-08-22": { book: "دانه کوچک", group: "گروه سنی: پایه ۳ و ۴" },
-      "2026-09-19": { book: "Flotsam", group: "گروه سنی: پایه ۵ و ۶" },
-      "2026-10-17": { book: "شازده کوچولو", group: "گروه سنی: پایه ۷ و ۸" },
+      "2026-04-25": { book: "زیباترین ماهی دریا", group: "گروه سنی: پایه ۱ و ۲" },
+      "2026-05-23": { book: "Billy the Bat's big adventure", group: "گروه سنی: پایه ۱ و ۲" },
+      "2026-08-22": { book: "برایم یک ستاره بکش", group: "گروه سنی: پایه ۳ و ۴" },
+      "2026-09-19": { book: "دانه کوچک", group: "گروه سنی: پایه ۵ و ۶" },
+      "2026-10-17": { book: "Flotsam", group: "گروه سنی: پایه ۷ و ۸" },
     },
   };
 
@@ -91,12 +91,12 @@ export default function RegistrationForm({
         </h2>
         
         {/* Session Image */}
-        <div className="relative w-48 h-48 mx-auto rounded-2xl overflow-hidden shadow-xl border-4 border-yellow-400">
+        <div className="relative w-48 aspect-[4/3] mx-auto rounded-2xl overflow-hidden shadow-xl bg-gradient-to-br from-purple-100 to-pink-100">
           <Image
             src={session.image}
             alt={localizedSession.book}
             fill
-            className="object-cover"
+            className="object-contain"
           />
         </div>
         
@@ -135,24 +135,21 @@ export default function RegistrationForm({
   return (
     <div dir={isRTL ? "rtl" : "ltr"}>
       {/* Session Card with Image */}
-      <div className="mb-6 rounded-2xl overflow-hidden bg-gradient-to-r from-yellow-100 via-pink-100 to-purple-100 dark:from-yellow-900/30 dark:via-pink-900/30 dark:to-purple-900/30 border-4 border-yellow-400 dark:border-yellow-600 shadow-lg">
+      <div className="mb-6 rounded-2xl overflow-hidden bg-gradient-to-r from-yellow-100 via-pink-100 to-purple-100 dark:from-yellow-900/30 dark:via-pink-900/30 dark:to-purple-900/30 border-2 border-purple-300 dark:border-purple-600 shadow-lg">
         {/* Session Image */}
-        <div className="relative h-48 w-full">
+        <div className="relative aspect-[4/3] w-full bg-gradient-to-br from-purple-100 to-pink-100 dark:from-zinc-700 dark:to-zinc-800">
           <Image
             src={session.image}
             alt={localizedSession.book}
             fill
-            className="object-cover"
+            className="object-contain"
           />
-          <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent" />
-          <div className="absolute bottom-4 left-4 right-4 text-white">
-            <h3 className="font-bold text-xl drop-shadow-lg flex items-center gap-2">
-              <span>📖</span> {localizedSession.book}
-            </h3>
-          </div>
         </div>
         
         <div className="p-4 space-y-2">
+          <h3 className="font-bold text-lg text-purple-700 dark:text-purple-300 flex items-center gap-2">
+            <span>📖</span> {localizedSession.book}
+          </h3>
           <p className="flex items-center gap-2 text-lg">
             <span className="text-2xl">👶</span>
             <span className="font-medium">{localizedSession.group}</span>
