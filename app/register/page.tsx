@@ -122,15 +122,16 @@ export default async function RegisterPage({ searchParams }: RegisterPageProps) 
 
   return (
     <main className="mx-auto w-full max-w-2xl px-4 py-8 sm:px-6 lg:px-8">
-      <div className="rounded-2xl border border-black/10 bg-white p-6 shadow-sm dark:border-white/20 dark:bg-zinc-900 sm:p-8">
+      <div className="rounded-3xl border-4 border-dashed border-purple-300 dark:border-purple-600 bg-gradient-to-br from-yellow-50 via-pink-50 to-purple-50 dark:from-zinc-900 dark:via-zinc-900 dark:to-zinc-900 p-6 shadow-xl sm:p-8">
         <div className="mb-6 flex flex-wrap items-center justify-between gap-3">
-          <h1 className="text-2xl font-bold">
-            🎨 {stats.isFull ? t.waitingListTitle : t.registrationTitle}
+          <h1 className="text-2xl font-bold flex items-center gap-2">
+            <span className="text-3xl">🎨</span>
+            <span className="text-3xl">✨</span>
           </h1>
           <div
-            className="inline-flex items-center gap-2 rounded-full border border-black/10 px-2 py-1 dark:border-white/20"
+            className="inline-flex items-center gap-2 rounded-full border-2 border-purple-300 dark:border-purple-600 bg-white/80 dark:bg-zinc-800/80 px-3 py-1.5"
           >
-            <span className="text-sm">🌐</span>
+            <span className="text-lg">🌐</span>
             {languageOptions.map((option) => {
               const isActive = language === option.code;
               const href = `/register?session=${sessionId}&lang=${option.code}`;
@@ -138,10 +139,10 @@ export default async function RegisterPage({ searchParams }: RegisterPageProps) 
                 <Link
                   key={option.code}
                   href={href}
-                  className={`rounded-full px-3 py-1 text-sm transition ${
+                  className={`rounded-full px-3 py-1 text-sm font-medium transition ${
                     isActive
-                      ? "bg-black text-white dark:bg-white dark:text-black"
-                      : "hover:bg-black/5 dark:hover:bg-white/10"
+                      ? "bg-gradient-to-r from-pink-500 to-orange-500 text-white shadow-md"
+                      : "hover:bg-purple-100 dark:hover:bg-purple-900/30"
                   }`}
                 >
                   {option.label}

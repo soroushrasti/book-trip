@@ -11,7 +11,7 @@ async function ensureDbInitialized() {
 }
 
 // Check if we're using database or file system
-function useDatabase(): boolean {
+function isUsingDatabase(): boolean {
   return !!process.env.DATABASE_URL;
 }
 
@@ -58,8 +58,8 @@ async function addRegistrationToDb(
   const result = await pool.query(
     `INSERT INTO registrations (
       session_id, first_name, last_name, phone_number, email,
-      street, house_number, post_code, city, country, is_waiting_list
-    ) VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11)
+      photo_consent, is_waiting_list
+    ) VALUES ($1, $2, $3, $4, $5, $6, $7)
     RETURNING id, created_at`,
     [
       sessionId,
@@ -67,11 +67,7 @@ async function addRegistrationToDb(
       registration.lastName,
       registration.phoneNumber,
       registration.email,
-      registration.address.street,
-      registration.address.houseNumber,
-      registration.address.postCode,
-      registration.address.city,
-      registration.address.country,
+      registration.photoConsent,
       isWaitingList,
     ]
   );
@@ -92,7 +88,7 @@ export async function getSessionStats(sessionId: SessionId): Promise<{
   spotsAvailable: number;
   isFull: boolean;
 }> {
-  if (useDatabase()) {
+  if (isUsingDatabase()) {
     await ensureDbInitialized();
     const registeredCount = await getRegistrationCountFromDb(sessionId, false);
     const waitingListCount = await getRegistrationCountFromDb(sessionId, true);
@@ -144,7 +140,7 @@ export async function addRegistration(
   sessionId: SessionId,
   registration: Omit<Registration, "id" | "createdAt" | "isWaitingList">
 ): Promise<{ success: boolean; isWaitingList: boolean; message: string }> {
-  if (useDatabase()) {
+  if (isUsingDatabase()) {
     await ensureDbInitialized();
     
     const registeredCount = await getRegistrationCountFromDb(sessionId, false);

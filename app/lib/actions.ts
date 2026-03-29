@@ -24,11 +24,7 @@ export async function registerAction(
   const lastName = formData.get("lastName") as string;
   const phoneNumber = formData.get("phoneNumber") as string;
   const email = formData.get("email") as string;
-  const street = formData.get("street") as string;
-  const houseNumber = formData.get("houseNumber") as string;
-  const postCode = formData.get("postCode") as string;
-  const city = formData.get("city") as string;
-  const country = formData.get("country") as string;
+  const photoConsent = formData.get("photoConsent") === "on";
 
   // Validation
   const errors: FormState["errors"] = {};
@@ -57,13 +53,7 @@ export async function registerAction(
       lastName: lastName?.trim() ?? "",
       phoneNumber: phoneNumber.trim(),
       email: email?.trim() ?? "",
-      address: {
-        street: street?.trim() ?? "",
-        houseNumber: houseNumber?.trim() ?? "",
-        postCode: postCode?.trim() ?? "",
-        city: city?.trim() ?? "",
-        country: country?.trim() ?? "",
-      },
+      photoConsent,
     });
 
     revalidatePath("/");

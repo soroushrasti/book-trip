@@ -18,11 +18,7 @@ export async function initializeDatabase(): Promise<void> {
         last_name VARCHAR(255),
         phone_number VARCHAR(50) NOT NULL,
         email VARCHAR(255),
-        street VARCHAR(255),
-        house_number VARCHAR(50),
-        post_code VARCHAR(20),
-        city VARCHAR(100),
-        country VARCHAR(100),
+        photo_consent BOOLEAN DEFAULT FALSE,
         is_waiting_list BOOLEAN DEFAULT FALSE,
         created_at TIMESTAMP WITH TIME ZONE DEFAULT NOW()
       );
