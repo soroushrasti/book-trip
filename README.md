@@ -53,3 +53,4 @@ To use PostgreSQL locally:
 - ⏳ Automatic waiting list when sessions are full
 - 🗄️ PostgreSQL database for production
 
+# Cache cleared Sun Mar 29 23:45:32 CEST 2026
