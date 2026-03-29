@@ -311,32 +311,43 @@ export default async function WorkshopHome({ language }: WorkshopHomeProps) {
   const content = contentByLanguage[language];
   const t = translations[language];
   const sessionStats = await getAllSessionStats();
+  const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || "https://book-trip.up.railway.app";
 
   return (
-    <main className="mx-auto w-full max-w-4xl px-4 py-8 sm:px-6 lg:px-8">
-      <div className="rounded-2xl border border-black/10 bg-white p-6 shadow-sm dark:border-white/20 dark:bg-zinc-900 sm:p-8">
+    <main className="mx-auto w-full max-w-4xl px-4 py-8 sm:px-6 lg:px-8 pt-24">
+      <div className="rounded-3xl border-4 border-dashed border-pink-400 bg-white/90 backdrop-blur-sm p-6 shadow-2xl dark:bg-zinc-900/90 sm:p-8 relative overflow-hidden">
+        {/* Decorative corner stars */}
+        <div className="absolute top-2 right-2 text-3xl animate-bounce">⭐</div>
+        <div className="absolute bottom-2 left-2 text-3xl animate-bounce" style={{animationDelay: '0.5s'}}>🌟</div>
+        
         {/* Hero Image */}
         <div className="mb-6 flex justify-center">
-          <Image
-            src="/img.png"
-            alt="Creative Storytelling & Painting for Children"
-            width={600}
-            height={400}
-            className="rounded-xl shadow-lg"
-            priority
-          />
+          <div className="relative">
+            <Image
+              src="/img.png"
+              alt="Creative Storytelling & Painting for Children"
+              width={600}
+              height={400}
+              className="rounded-2xl shadow-2xl border-4 border-yellow-400"
+              priority
+            />
+            <div className="absolute -top-4 -left-4 text-4xl animate-bounce">🎨</div>
+            <div className="absolute -top-4 -right-4 text-4xl animate-bounce" style={{animationDelay: '0.3s'}}>✨</div>
+            <div className="absolute -bottom-4 -left-4 text-4xl animate-bounce" style={{animationDelay: '0.6s'}}>📚</div>
+            <div className="absolute -bottom-4 -right-4 text-4xl animate-bounce" style={{animationDelay: '0.9s'}}>🖌️</div>
+          </div>
         </div>
 
         <div className="mb-6 flex flex-wrap items-center justify-between gap-3">
-          <h1 className="text-2xl font-bold sm:text-3xl">
+          <h1 className="text-2xl font-bold sm:text-3xl bg-gradient-to-r from-pink-500 via-purple-500 to-cyan-500 bg-clip-text text-transparent">
             🎨✨ Creative Storytelling & Painting for Children ✨🎨
           </h1>
           <div
-            className="inline-flex items-center gap-2 rounded-full border border-black/10 px-2 py-1 dark:border-white/20"
+            className="inline-flex items-center gap-2 rounded-full border-2 border-purple-400 bg-purple-50 dark:bg-purple-900/30 px-3 py-1.5 shadow-lg"
             aria-label="Language switcher"
           >
-            <span aria-hidden="true" className="text-sm">
-              🌐
+            <span aria-hidden="true" className="text-lg">
+              🌍
             </span>
             {languageOptions.map((option) => {
               const isActive = language === option.code;
@@ -346,10 +357,10 @@ export default async function WorkshopHome({ language }: WorkshopHomeProps) {
                 <Link
                   key={option.code}
                   href={href}
-                  className={`rounded-full px-3 py-1 text-sm transition ${
+                  className={`rounded-full px-3 py-1 text-sm font-bold transition-all ${
                     isActive
-                      ? "bg-black text-white dark:bg-white dark:text-black"
-                      : "hover:bg-black/5 dark:hover:bg-white/10"
+                      ? "bg-gradient-to-r from-pink-500 to-orange-500 text-white shadow-md scale-105"
+                      : "hover:bg-purple-200 dark:hover:bg-purple-800"
                   }`}
                   aria-current={isActive ? "page" : undefined}
                 >
@@ -360,42 +371,65 @@ export default async function WorkshopHome({ language }: WorkshopHomeProps) {
           </div>
         </div>
 
-        <section className="space-y-5" dir={language === "fa" ? "rtl" : "ltr"}>
-          <div>
-            <p className="text-lg font-semibold">{content.announcement}</p>
-            <p className="mt-2 font-medium">{content.introQuestion}</p>
-            <p className="mt-1 text-black/80 dark:text-white/80">{content.introBody}</p>
+        <section className="space-y-6" dir={language === "fa" ? "rtl" : "ltr"}>
+          {/* Announcement Banner */}
+          <div className="p-4 rounded-2xl bg-gradient-to-r from-yellow-200 via-pink-200 to-purple-200 dark:from-yellow-900/30 dark:via-pink-900/30 dark:to-purple-900/30 border-2 border-yellow-400 shadow-lg">
+            <p className="text-xl font-bold flex items-center gap-2">
+              <span className="text-2xl">📢</span> {content.announcement}
+            </p>
+            <p className="mt-2 font-medium flex items-center gap-2">
+              <span className="text-xl">🤔</span> {content.introQuestion}
+            </p>
+            <p className="mt-1 text-black/80 dark:text-white/80 flex items-center gap-2">
+              <span className="text-xl">🌈</span> {content.introBody}
+            </p>
           </div>
 
-          <div>
-            <h2 className="text-lg font-semibold">🌟 {content.offerTitle}</h2>
-            <ul className="mt-2 list-disc space-y-1 pl-6">
-              {content.offers.map((item) => (
-                <li key={item}>{item}</li>
+          {/* What we offer */}
+          <div className="p-4 rounded-2xl bg-gradient-to-r from-green-100 to-cyan-100 dark:from-green-900/30 dark:to-cyan-900/30 border-2 border-green-400 shadow-lg">
+            <h2 className="text-xl font-bold flex items-center gap-2">
+              <span className="text-2xl">🌟</span> {content.offerTitle}
+            </h2>
+            <ul className="mt-3 space-y-2">
+              {content.offers.map((item, index) => (
+                <li key={item} className="flex items-center gap-2 text-lg">
+                  <span className="text-xl">{['🗣️', '🎨', '💪', '🏠'][index]}</span>
+                  {item}
+                </li>
               ))}
             </ul>
           </div>
 
           {/* Books Section */}
-          <div>
-            <h2 className="text-lg font-semibold">📚 {content.booksTitle}</h2>
-            <ol className="mt-2 list-decimal space-y-1 pl-6">
+          <div className="p-4 rounded-2xl bg-gradient-to-r from-orange-100 to-yellow-100 dark:from-orange-900/30 dark:to-yellow-900/30 border-2 border-orange-400 shadow-lg">
+            <h2 className="text-xl font-bold flex items-center gap-2">
+              <span className="text-2xl">📚</span> {content.booksTitle}
+            </h2>
+            <div className="mt-3 grid gap-2">
               {content.books.map((book, index) => (
-                <li key={index}>
-                  <span className="font-medium">{book.title}</span> — {book.ageGroup}
-                </li>
+                <div key={index} className="flex items-center gap-3 p-2 rounded-xl bg-white/50 dark:bg-white/10 hover:scale-[1.02] transition-transform">
+                  <span className="text-2xl">{['🐠', '⭐', '🌱', '🌊', '👑'][index]}</span>
+                  <div>
+                    <span className="font-bold text-purple-700 dark:text-purple-300">{book.title}</span>
+                    <span className="mx-2">—</span>
+                    <span className="text-pink-600 dark:text-pink-400">{book.ageGroup}</span>
+                  </div>
+                </div>
               ))}
-            </ol>
+            </div>
           </div>
 
           {/* Meet the Team Section */}
-          <div>
-            <h2 className="text-lg font-semibold mb-4">👩‍🏫 {content.teamTitle}</h2>
+          <div className="p-4 rounded-2xl bg-gradient-to-r from-pink-100 to-purple-100 dark:from-pink-900/30 dark:to-purple-900/30 border-2 border-pink-400 shadow-lg">
+            <h2 className="text-xl font-bold flex items-center gap-2 mb-4">
+              <span className="text-2xl">👩‍🏫</span> {content.teamTitle}
+              <span className="text-2xl">👩‍🎨</span>
+            </h2>
             <div className="grid gap-6 sm:grid-cols-2">
               {content.team.map((member) => (
                 <div
                   key={member.name}
-                  className="rounded-xl border border-black/10 dark:border-white/10 overflow-hidden bg-gradient-to-br from-purple-50 to-pink-50 dark:from-purple-900/20 dark:to-pink-900/20"
+                  className="rounded-2xl border-4 border-dashed border-purple-400 overflow-hidden bg-gradient-to-br from-yellow-50 via-pink-50 to-purple-50 dark:from-purple-900/20 dark:to-pink-900/20 hover:scale-[1.02] transition-transform"
                 >
                   <div className="flex flex-col items-center p-6">
                     <div className="relative w-32 h-32 mb-4">
@@ -403,14 +437,15 @@ export default async function WorkshopHome({ language }: WorkshopHomeProps) {
                         src={member.image}
                         alt={member.name}
                         fill
-                        className="rounded-full object-cover border-4 border-white dark:border-zinc-800 shadow-lg"
+                        className="rounded-full object-cover border-4 border-yellow-400 shadow-xl"
                       />
+                      <div className="absolute -bottom-2 -right-2 text-3xl">{member.emoji}</div>
                     </div>
-                    <h3 className="text-lg font-bold text-center">
-                      {member.emoji} {member.name}
+                    <h3 className="text-lg font-bold text-center text-purple-700 dark:text-purple-300">
+                      {member.name}
                     </h3>
-                    <p className="text-sm font-medium text-amber-600 dark:text-amber-400 mb-3">
-                      {member.role}
+                    <p className="text-sm font-bold text-pink-600 dark:text-pink-400 mb-3 flex items-center gap-1">
+                      <span>✨</span> {member.role} <span>✨</span>
                     </p>
                     <p className="text-sm text-black/70 dark:text-white/70 text-center leading-relaxed">
                       {member.bio}
@@ -422,8 +457,11 @@ export default async function WorkshopHome({ language }: WorkshopHomeProps) {
           </div>
 
           {/* Interactive Session Cards */}
-          <div>
-            <h2 className="text-lg font-semibold mb-4">🗓 {content.scheduleTitle}</h2>
+          <div className="p-4 rounded-2xl bg-gradient-to-r from-cyan-100 to-blue-100 dark:from-cyan-900/30 dark:to-blue-900/30 border-2 border-cyan-400 shadow-lg">
+            <h2 className="text-xl font-bold flex items-center gap-2 mb-4">
+              <span className="text-2xl">🗓️</span> {content.scheduleTitle}
+              <span className="text-2xl">🎉</span>
+            </h2>
             <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
               {SESSIONS.map((session, index) => {
                 const contentSession = content.sessions[index];
@@ -433,7 +471,7 @@ export default async function WorkshopHome({ language }: WorkshopHomeProps) {
                   <Link
                     key={session.id}
                     href={`/register?session=${session.id}&lang=${language}`}
-                    className="group relative overflow-hidden rounded-xl border-2 border-purple-200 dark:border-purple-700 hover:border-amber-400 dark:hover:border-amber-400 transition-all duration-300 hover:shadow-xl hover:scale-[1.02]"
+                    className="group relative overflow-hidden rounded-2xl border-4 border-dashed border-yellow-400 hover:border-pink-500 transition-all duration-300 hover:shadow-2xl hover:scale-[1.05] bg-white dark:bg-zinc-800"
                   >
                     {/* Session Image */}
                     <div className="relative h-40 w-full overflow-hidden">
@@ -485,30 +523,64 @@ export default async function WorkshopHome({ language }: WorkshopHomeProps) {
                 );
               })}
             </div>
-            <p className="mt-4 text-sm text-black/80 dark:text-white/80">📌 {content.scheduleNote}</p>
+            <p className="mt-4 text-sm bg-white/50 dark:bg-white/10 rounded-full px-4 py-2 inline-flex items-center gap-2">
+              <span>📌</span> {content.scheduleNote}
+            </p>
           </div>
 
-          <div className="space-y-1">
-            <p>
-              📍 <span className="font-semibold">{content.locationLabel}:</span> {content.locationValue}
-            </p>
-            <p>
-              🕒 <span className="font-semibold">{content.timeLabel}:</span> {content.timeValue}
-            </p>
-            <p>💛 {content.participation}</p>
-            <p>🍪 {content.catering}</p>
-            <p>🎨 {content.exhibition}</p>
+          {/* Location Info */}
+          <div className="p-4 rounded-2xl bg-gradient-to-r from-lime-100 to-green-100 dark:from-lime-900/30 dark:to-green-900/30 border-2 border-lime-400 shadow-lg space-y-3">
+            <div className="flex items-center gap-3 text-lg">
+              <span className="text-3xl">📍</span>
+              <div>
+                <span className="font-bold">{content.locationLabel}:</span>
+                <span className="ml-2">{content.locationValue}</span>
+              </div>
+            </div>
+            <div className="flex items-center gap-3 text-lg">
+              <span className="text-3xl">🕐</span>
+              <div>
+                <span className="font-bold">{content.timeLabel}:</span>
+                <span className="ml-2 text-purple-700 dark:text-purple-300 font-bold">{content.timeValue}</span>
+              </div>
+            </div>
+            <div className="flex items-center gap-3 text-lg">
+              <span className="text-3xl">💛</span>
+              <span>{content.participation}</span>
+            </div>
+            <div className="flex items-center gap-3 text-lg">
+              <span className="text-3xl">🍪</span>
+              <span>{content.catering}</span>
+            </div>
+            <div className="flex items-center gap-3 text-lg">
+              <span className="text-3xl">🖼️</span>
+              <span>{content.exhibition}</span>
+            </div>
           </div>
 
-          <div className="space-y-1 rounded-xl border border-amber-200 bg-amber-50 p-4 dark:border-amber-400/30 dark:bg-amber-400/10">
-            <h2 className="font-semibold">📩 {content.registrationTitle}</h2>
-            <p>
-              <span className="font-semibold">{content.emailLabel}:</span> {content.emailValue}
-            </p>
-            <p>
-              <span className="font-semibold">{content.phoneLabel}:</span> {content.phoneValue}
-            </p>
-            <p className="font-medium">⚠️ {content.limitedNotice}</p>
+          {/* Contact Info */}
+          <div className="p-4 rounded-2xl bg-gradient-to-r from-amber-200 to-orange-200 dark:from-amber-900/40 dark:to-orange-900/40 border-4 border-dashed border-amber-500 shadow-lg">
+            <h2 className="text-xl font-bold flex items-center gap-2 mb-3">
+              <span className="text-2xl">📩</span> {content.registrationTitle}
+              <span className="text-2xl">✉️</span>
+            </h2>
+            <div className="space-y-2">
+              <p className="flex items-center gap-2 text-lg">
+                <span className="text-2xl">📧</span>
+                <span className="font-bold">{content.emailLabel}:</span>
+                <span className="text-blue-700 dark:text-blue-300">{content.emailValue}</span>
+              </p>
+              <p className="flex items-center gap-2 text-lg">
+                <span className="text-2xl">📱</span>
+                <span className="font-bold">{content.phoneLabel}:</span>
+                <span className="text-green-700 dark:text-green-300">{content.phoneValue}</span>
+              </p>
+              <p className="flex items-center gap-2 text-lg font-bold text-red-600 dark:text-red-400 mt-3 bg-red-100 dark:bg-red-900/30 rounded-full px-4 py-2">
+                <span className="text-2xl animate-bounce">⚠️</span>
+                {content.limitedNotice}
+                <span className="text-2xl">🏃</span>
+              </p>
+            </div>
           </div>
 
           {/* Social Share Section */}
@@ -521,7 +593,7 @@ export default async function WorkshopHome({ language }: WorkshopHomeProps) {
             <div className="flex justify-center gap-3 flex-wrap">
               {/* WhatsApp */}
               <a
-                href={`https://wa.me/?text=${encodeURIComponent(t.shareText)}`}
+                href={`https://wa.me/?text=${encodeURIComponent(t.shareText + " " + siteUrl)}`}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="flex items-center gap-2 px-4 py-2 rounded-full bg-green-500 text-white hover:bg-green-600 transition transform hover:scale-105 shadow-lg"
@@ -534,7 +606,7 @@ export default async function WorkshopHome({ language }: WorkshopHomeProps) {
 
               {/* Telegram */}
               <a
-                href={`https://t.me/share/url?text=${encodeURIComponent(t.shareText)}`}
+                href={`https://t.me/share/url?url=${encodeURIComponent(siteUrl)}&text=${encodeURIComponent(t.shareText)}`}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="flex items-center gap-2 px-4 py-2 rounded-full bg-blue-500 text-white hover:bg-blue-600 transition transform hover:scale-105 shadow-lg"
@@ -560,7 +632,7 @@ export default async function WorkshopHome({ language }: WorkshopHomeProps) {
 
               {/* LinkedIn */}
               <a
-                href="https://www.linkedin.com/sharing/share-offsite/"
+                href={`https://www.linkedin.com/sharing/share-offsite/?url=${encodeURIComponent(siteUrl)}`}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="flex items-center gap-2 px-4 py-2 rounded-full bg-blue-700 text-white hover:bg-blue-800 transition transform hover:scale-105 shadow-lg"
@@ -582,21 +654,30 @@ export default async function WorkshopHome({ language }: WorkshopHomeProps) {
       >
         <div className="relative">
           {/* Speech Bubble */}
-          <div className="absolute bottom-full right-0 mb-2 w-48 opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none">
-            <div className="bg-white dark:bg-zinc-800 rounded-xl p-3 shadow-xl border border-black/10 dark:border-white/10">
-              <p className="text-sm font-medium">{t.botGreeting}</p>
-              <p className="text-xs text-black/60 dark:text-white/60 mt-1">{t.botCTA}</p>
-              <div className="absolute bottom-0 right-6 transform translate-y-1/2 rotate-45 w-3 h-3 bg-white dark:bg-zinc-800 border-r border-b border-black/10 dark:border-white/10"></div>
+          <div className="absolute bottom-full right-0 mb-2 w-52 opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none">
+            <div className="bg-gradient-to-r from-pink-100 to-purple-100 dark:from-pink-900 dark:to-purple-900 rounded-2xl p-4 shadow-2xl border-2 border-pink-400">
+              <p className="text-sm font-bold flex items-center gap-2">
+                <span className="text-xl">👋</span> {t.botGreeting}
+              </p>
+              <p className="text-xs text-purple-700 dark:text-purple-300 mt-1 flex items-center gap-1">
+                <span>🎨</span> {t.botCTA} <span>✨</span>
+              </p>
+              <div className="absolute bottom-0 right-6 transform translate-y-1/2 rotate-45 w-4 h-4 bg-purple-100 dark:bg-purple-900 border-r-2 border-b-2 border-pink-400"></div>
             </div>
           </div>
           
           {/* Bot Button */}
-          <div className="flex items-center justify-center w-16 h-16 rounded-full bg-gradient-to-br from-amber-500 to-orange-500 shadow-lg hover:shadow-xl hover:scale-110 transition-all duration-300 animate-bounce">
-            <span className="text-3xl">🤖</span>
+          <div className="flex items-center justify-center w-20 h-20 rounded-full bg-gradient-to-br from-yellow-400 via-pink-500 to-purple-500 shadow-2xl hover:shadow-xl hover:scale-125 transition-all duration-300 animate-bounce border-4 border-white">
+            <span className="text-4xl">🎨</span>
           </div>
           
+          {/* Decorative stars around button */}
+          <div className="absolute -top-2 -left-2 text-xl animate-bounce" style={{animationDelay: '0.2s'}}>⭐</div>
+          <div className="absolute -top-2 -right-2 text-xl animate-bounce" style={{animationDelay: '0.4s'}}>✨</div>
+          <div className="absolute -bottom-1 left-0 text-lg animate-bounce" style={{animationDelay: '0.6s'}}>🌟</div>
+          
           {/* Pulse Effect */}
-          <div className="absolute inset-0 rounded-full bg-amber-500 animate-ping opacity-20"></div>
+          <div className="absolute inset-0 rounded-full bg-pink-500 animate-ping opacity-30"></div>
         </div>
       </Link>
     </main>

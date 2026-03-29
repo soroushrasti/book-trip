@@ -113,13 +113,13 @@ export default function RegistrationForm({
         </div>
         
         <div className="flex flex-col sm:flex-row gap-4 justify-center pt-4">
-          <Link
-            href={`/register?session=${sessionId}&lang=${language}`}
+          <button
+            onClick={() => window.location.reload()}
             className="inline-flex items-center justify-center gap-2 rounded-full bg-gradient-to-r from-pink-500 to-orange-500 px-6 py-3 font-bold text-white hover:from-pink-600 hover:to-orange-600 transition shadow-lg transform hover:scale-105"
           >
             <span className="text-xl">👋</span>
             {t.registerAnother}
-          </Link>
+          </button>
           <Link
             href={language === "nl" ? "/" : `/?lang=${language}`}
             className="inline-flex items-center justify-center gap-2 rounded-full border-2 border-purple-400 dark:border-purple-500 px-6 py-3 font-bold text-purple-600 dark:text-purple-400 hover:bg-purple-50 dark:hover:bg-purple-900/20 transition transform hover:scale-105"

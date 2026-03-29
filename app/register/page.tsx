@@ -37,14 +37,24 @@ export default async function RegisterPage({ searchParams }: RegisterPageProps) 
   if (!sessionId) {
     // Show session selection
     return (
-      <main className="mx-auto w-full max-w-4xl px-4 py-8 sm:px-6 lg:px-8">
-        <div className="rounded-2xl border border-black/10 bg-white p-6 shadow-sm dark:border-white/20 dark:bg-zinc-900 sm:p-8">
+      <main className="mx-auto w-full max-w-4xl px-4 py-8 sm:px-6 lg:px-8 pt-24">
+        <div className="rounded-3xl border-4 border-dashed border-purple-400 bg-white/90 backdrop-blur-sm p-6 shadow-2xl dark:bg-zinc-900/90 sm:p-8 relative overflow-hidden">
+          {/* Decorative elements */}
+          <div className="absolute top-2 right-2 text-3xl animate-bounce">🎨</div>
+          <div className="absolute bottom-2 left-2 text-3xl animate-bounce" style={{animationDelay: '0.5s'}}>📚</div>
+          
           <div className="mb-6 flex flex-wrap items-center justify-between gap-3">
-            <h1 className="text-2xl font-bold">{t.registrationTitle}</h1>
+            <h1 className="text-2xl font-bold flex items-center gap-2">
+              <span className="text-3xl">✏️</span>
+              <span className="bg-gradient-to-r from-pink-500 via-purple-500 to-cyan-500 bg-clip-text text-transparent">
+                {t.registrationTitle}
+              </span>
+              <span className="text-3xl">✨</span>
+            </h1>
             <div
-              className="inline-flex items-center gap-2 rounded-full border border-black/10 px-2 py-1 dark:border-white/20"
+              className="inline-flex items-center gap-2 rounded-full border-2 border-purple-400 bg-purple-50 dark:bg-purple-900/30 px-3 py-1.5 shadow-lg"
             >
-              <span className="text-sm">🌐</span>
+              <span className="text-lg">🌍</span>
               {languageOptions.map((option) => {
                 const isActive = language === option.code;
                 const href = `/register?lang=${option.code}`;
@@ -52,10 +62,10 @@ export default async function RegisterPage({ searchParams }: RegisterPageProps) 
                   <Link
                     key={option.code}
                     href={href}
-                    className={`rounded-full px-3 py-1 text-sm transition ${
+                    className={`rounded-full px-3 py-1 text-sm font-bold transition-all ${
                       isActive
-                        ? "bg-black text-white dark:bg-white dark:text-black"
-                        : "hover:bg-black/5 dark:hover:bg-white/10"
+                        ? "bg-gradient-to-r from-pink-500 to-orange-500 text-white shadow-md scale-105"
+                        : "hover:bg-purple-200 dark:hover:bg-purple-800"
                     }`}
                   >
                     {option.label}
@@ -65,33 +75,42 @@ export default async function RegisterPage({ searchParams }: RegisterPageProps) 
             </div>
           </div>
 
-          <p className="mb-6 text-black/70 dark:text-white/70" dir={isRTL ? "rtl" : "ltr"}>
+          <p className="mb-6 text-lg font-bold text-purple-700 dark:text-purple-300 flex items-center gap-2" dir={isRTL ? "rtl" : "ltr"}>
+            <span className="text-2xl">👇</span>
             {t.sessionLabel}:
+            <span className="text-2xl">🎯</span>
           </p>
 
           <div className="grid gap-4" dir={isRTL ? "rtl" : "ltr"}>
-            {SESSIONS.map(async (session) => {
+            {SESSIONS.map(async (session, index) => {
               const stats = await getSessionStats(session.id);
+              const emojis = ['🐠', '⭐', '🌱', '🌊', '👑'];
               return (
                 <Link
                   key={session.id}
                   href={`/register?session=${session.id}&lang=${language}`}
-                  className="block p-4 rounded-xl border border-black/10 dark:border-white/10 hover:border-amber-400 hover:bg-amber-50 dark:hover:bg-amber-900/20 transition group"
+                  className="block p-4 rounded-2xl border-4 border-dashed border-yellow-400 bg-gradient-to-r from-yellow-50 to-pink-50 dark:from-yellow-900/20 dark:to-pink-900/20 hover:border-pink-500 hover:scale-[1.02] transition-all group shadow-lg"
                 >
                   <div className="flex items-center justify-between">
-                    <div>
-                      <p className="font-medium group-hover:text-amber-600 dark:group-hover:text-amber-400 transition">
-                        📖 {session.book}
-                      </p>
-                      <p className="text-sm text-black/60 dark:text-white/60">
-                        {session.group}
-                      </p>
+                    <div className="flex items-center gap-3">
+                      <span className="text-4xl">{emojis[index]}</span>
+                      <div>
+                        <p className="font-bold text-lg text-purple-700 dark:text-purple-300 group-hover:text-pink-600 transition flex items-center gap-2">
+                          <span>📖</span> {session.book}
+                        </p>
+                        <p className="text-sm text-pink-600 dark:text-pink-400 flex items-center gap-1">
+                          <span>👶</span> {session.group}
+                        </p>
+                        <p className="text-sm text-cyan-600 dark:text-cyan-400 flex items-center gap-1">
+                          <span>🕐</span> {session.time}
+                        </p>
+                      </div>
                     </div>
                     <div className="text-right">
-                      <span className={`text-sm font-medium ${
+                      <span className={`text-sm font-bold px-3 py-1 rounded-full ${
                         stats.isFull 
-                          ? "text-amber-600 dark:text-amber-400" 
-                          : "text-green-600 dark:text-green-400"
+                          ? "bg-amber-100 text-amber-700 dark:bg-amber-900/50 dark:text-amber-400" 
+                          : "bg-green-100 text-green-700 dark:bg-green-900/50 dark:text-green-400"
                       }`}>
                         {stats.isFull 
                           ? `⏳ ${t.waitingList}`
@@ -108,9 +127,10 @@ export default async function RegisterPage({ searchParams }: RegisterPageProps) 
           <div className="mt-6 text-center">
             <Link
               href={language === "nl" ? "/" : `/?lang=${language}`}
-              className="text-sm text-black/60 dark:text-white/60 hover:text-black dark:hover:text-white transition"
+              className="inline-flex items-center gap-2 text-purple-600 dark:text-purple-400 hover:text-pink-600 dark:hover:text-pink-400 transition font-bold"
             >
-              ← {t.backToHome}
+              <span className="text-xl">🏠</span>
+              {t.backToHome}
             </Link>
           </div>
         </div>
@@ -121,8 +141,13 @@ export default async function RegisterPage({ searchParams }: RegisterPageProps) 
   const stats = await getSessionStats(sessionId);
 
   return (
-    <main className="mx-auto w-full max-w-2xl px-4 py-8 sm:px-6 lg:px-8">
-      <div className="rounded-3xl border-4 border-dashed border-purple-300 dark:border-purple-600 bg-gradient-to-br from-yellow-50 via-pink-50 to-purple-50 dark:from-zinc-900 dark:via-zinc-900 dark:to-zinc-900 p-6 shadow-xl sm:p-8">
+    <main className="mx-auto w-full max-w-2xl px-4 py-8 sm:px-6 lg:px-8 pt-24">
+      <div className="rounded-3xl border-4 border-dashed border-pink-400 bg-white/90 backdrop-blur-sm p-6 shadow-2xl dark:bg-zinc-900/90 sm:p-8 relative overflow-hidden">
+        {/* Decorative elements */}
+        <div className="absolute top-2 right-2 text-3xl animate-bounce">✨</div>
+        <div className="absolute bottom-2 left-2 text-3xl animate-bounce" style={{animationDelay: '0.5s'}}>🎨</div>
+        <div className="absolute top-2 left-1/2 -translate-x-1/2 text-2xl animate-bounce" style={{animationDelay: '0.3s'}}>📝</div>
+        
         <div className="mb-6 flex flex-wrap items-center justify-between gap-3">
           <h1 className="text-2xl font-bold flex items-center gap-2">
             <span className="text-3xl">🎨</span>
