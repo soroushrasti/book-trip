@@ -15,6 +15,14 @@ type Book = {
   ageGroup: string;
 };
 
+type TeamMember = {
+  name: string;
+  role: string;
+  bio: string;
+  image: string;
+  emoji: string;
+};
+
 type Content = {
   announcement: string;
   introQuestion: string;
@@ -23,6 +31,8 @@ type Content = {
   offers: string[];
   booksTitle: string;
   books: Book[];
+  teamTitle: string;
+  team: TeamMember[];
   scheduleTitle: string;
   sessions: Session[];
   scheduleNote: string;
@@ -70,6 +80,23 @@ const contentByLanguage: Record<Language, Content> = {
       { title: "The tiny seed", ageGroup: "Groep 3-4" },
       { title: "Flotsam", ageGroup: "Groep 5-6" },
       { title: "The little prince", ageGroup: "Groep 7-8" },
+    ],
+    teamTitle: "Maak kennis met het team",
+    team: [
+      {
+        name: "Fariba Baharloo",
+        role: "Docent Creatieve Kunst",
+        bio: "Fariba Baharloo is een creatieve kunstdocent en oprichter van Toranj Art. Zij begeleidt kinderen door middel van schilderen en visuele expressie en helpt hen hun verbeelding en zelfvertrouwen te ontwikkelen in een inspirerende omgeving.",
+        image: "/Fariba_Baharloo.jpeg",
+        emoji: "👩‍🎨",
+      },
+      {
+        name: "Nastaran Fadaei Heidari",
+        role: "Docent Storytelling",
+        bio: "Nastaran Fadaei Heidari is storytelling docent en oprichter van Siblings Education. Zij neemt kinderen mee in inspirerende en meertalige verhalen en creëert een speelse omgeving waarin taal, verbeelding en creativiteit samenkomen.",
+        image: "/Nastaran_Fadaei_Heidari.jpeg",
+        emoji: "📚",
+      },
     ],
     scheduleTitle: "Data & leeftijdsgroepen:",
     sessions: [
@@ -136,6 +163,23 @@ const contentByLanguage: Record<Language, Content> = {
       { title: "Flotsam", ageGroup: "Group 5-6" },
       { title: "The little prince", ageGroup: "Group 7-8" },
     ],
+    teamTitle: "Meet the Team",
+    team: [
+      {
+        name: "Fariba Baharloo",
+        role: "Creative Art Instructor",
+        bio: "Fariba Baharloo is a creative art instructor and founder of Toranj Art. She works with children through painting and visual expression, helping them explore their imagination and develop confidence in a supportive and inspiring environment.",
+        image: "/Fariba_Baharloo.jpeg",
+        emoji: "👩‍🎨",
+      },
+      {
+        name: "Nastaran Fadaei Heidari",
+        role: "Storytelling Instructor",
+        bio: "Nastaran Fadaei Heidari is a storytelling instructor and founder of Siblings Education. She brings stories to life in a multilingual setting, creating a playful and engaging space where children connect with language, imagination, and creativity.",
+        image: "/Nastaran_Fadaei_Heidari.jpeg",
+        emoji: "📚",
+      },
+    ],
     scheduleTitle: "Dates & age groups:",
     sessions: [
       {
@@ -198,6 +242,23 @@ const contentByLanguage: Record<Language, Content> = {
       { title: "دانه کوچک", ageGroup: "پایه ۳ و ۴" },
       { title: "Flotsam", ageGroup: "پایه ۵ و ۶" },
       { title: "شازده کوچولو", ageGroup: "پایه ۷ و ۸" },
+    ],
+    teamTitle: "با تیم ما آشنا شوید",
+    team: [
+      {
+        name: "فریبا بهارلو",
+        role: "مربی هنرهای تجسمی",
+        bio: "فریبا بهارلو مربی هنرهای تجسمی و بنیان‌گذار تورنج آرت است. او با کودکان از طریق نقاشی و بیان بصری کار می‌کند و به آن‌ها کمک می‌کند تا تخیل خود را کشف کنند و اعتماد به نفس خود را در محیطی حمایتی و الهام‌بخش توسعه دهند.",
+        image: "/Fariba_Baharloo.jpeg",
+        emoji: "👩‍🎨",
+      },
+      {
+        name: "نسترن فدایی حیدری",
+        role: "مربی قصه‌گویی",
+        bio: "نسترن فدایی حیدری مربی قصه‌گویی و بنیان‌گذار Siblings Education است. او داستان‌ها را در محیطی چندزبانه زنده می‌کند و فضایی بازیگوش و جذاب ایجاد می‌کند که در آن کودکان با زبان، تخیل و خلاقیت ارتباط برقرار می‌کنند.",
+        image: "/Nastaran_Fadaei_Heidari.jpeg",
+        emoji: "📚",
+      },
     ],
     scheduleTitle: "تاریخ ها و گروه های سنی:",
     sessions: [
@@ -333,6 +394,39 @@ export default async function WorkshopHome({ language }: WorkshopHomeProps) {
                 </li>
               ))}
             </ol>
+          </div>
+
+          {/* Meet the Team Section */}
+          <div>
+            <h2 className="text-lg font-semibold mb-4">👩‍🏫 {content.teamTitle}</h2>
+            <div className="grid gap-6 sm:grid-cols-2">
+              {content.team.map((member) => (
+                <div
+                  key={member.name}
+                  className="rounded-xl border border-black/10 dark:border-white/10 overflow-hidden bg-gradient-to-br from-purple-50 to-pink-50 dark:from-purple-900/20 dark:to-pink-900/20"
+                >
+                  <div className="flex flex-col items-center p-6">
+                    <div className="relative w-32 h-32 mb-4">
+                      <Image
+                        src={member.image}
+                        alt={member.name}
+                        fill
+                        className="rounded-full object-cover border-4 border-white dark:border-zinc-800 shadow-lg"
+                      />
+                    </div>
+                    <h3 className="text-lg font-bold text-center">
+                      {member.emoji} {member.name}
+                    </h3>
+                    <p className="text-sm font-medium text-amber-600 dark:text-amber-400 mb-3">
+                      {member.role}
+                    </p>
+                    <p className="text-sm text-black/70 dark:text-white/70 text-center leading-relaxed">
+                      {member.bio}
+                    </p>
+                  </div>
+                </div>
+              ))}
+            </div>
           </div>
 
           {/* Interactive Session Cards */}
