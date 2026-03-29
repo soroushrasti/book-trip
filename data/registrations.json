@@ -22,7 +22,19 @@
     "waitingList": []
   },
   "2026-05-23": {
-    "registrations": [],
+    "registrations": [
+      {
+        "sessionId": "2026-05-23",
+        "firstName": "Soroush",
+        "lastName": "Rasti",
+        "phoneNumber": "0628676724",
+        "email": "so.rasty@gmail.com",
+        "photoConsent": true,
+        "id": "88d0f8f8-11a3-44c4-8c37-1a106c76ddb7",
+        "createdAt": "2026-03-29T12:49:42.147Z",
+        "isWaitingList": false
+      }
+    ],
     "waitingList": []
   },
   "2026-08-22": {
