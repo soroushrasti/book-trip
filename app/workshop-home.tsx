@@ -1,7 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { getAllSessionStats } from "./lib/data";
-import { Language, SessionId, SESSIONS, MAX_CAPACITY } from "./lib/types";
+import { Language, SESSIONS } from "./lib/types";
 import { translations } from "./lib/translations";
 
 type Session = {
@@ -428,31 +428,37 @@ export default async function WorkshopHome({ language }: WorkshopHomeProps) {
               {SESSIONS.map((session, index) => {
                 const contentSession = content.sessions[index];
                 const stats = sessionStats[session.id];
-                const imageData = sessionImages[session.id];
-                
+
                 return (
                   <Link
                     key={session.id}
                     href={`/register?session=${session.id}&lang=${language}`}
-                    className="group relative overflow-hidden rounded-xl border border-black/10 dark:border-white/10 hover:border-amber-400 dark:hover:border-amber-400 transition-all duration-300 hover:shadow-lg hover:scale-[1.02]"
+                    className="group relative overflow-hidden rounded-xl border-2 border-purple-200 dark:border-purple-700 hover:border-amber-400 dark:hover:border-amber-400 transition-all duration-300 hover:shadow-xl hover:scale-[1.02]"
                   >
-                    {/* Image/Gradient Header */}
-                    <div className={`h-32 bg-gradient-to-br ${imageData.gradient} flex items-center justify-center`}>
-                      <span className="text-6xl drop-shadow-lg group-hover:scale-110 transition-transform duration-300">
-                        {imageData.emoji}
-                      </span>
+                    {/* Session Image */}
+                    <div className="relative h-40 w-full overflow-hidden">
+                      <Image
+                        src={session.image}
+                        alt={contentSession.book}
+                        fill
+                        className="object-cover group-hover:scale-110 transition-transform duration-300"
+                      />
+                      <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent" />
                     </div>
                     
                     {/* Content */}
-                    <div className="p-4 space-y-2">
-                      <p className="font-bold text-amber-600 dark:text-amber-400">
-                        📅 {contentSession.date}
+                    <div className="p-4 space-y-2 bg-gradient-to-br from-yellow-50 to-pink-50 dark:from-zinc-800 dark:to-zinc-800">
+                      <p className="font-bold text-amber-600 dark:text-amber-400 flex items-center gap-1">
+                        <span>📅</span> {contentSession.date}
                       </p>
-                      <p className="font-medium line-clamp-2">
-                        📖 {contentSession.book}
+                      <p className="font-medium line-clamp-2 flex items-center gap-1">
+                        <span>📖</span> {contentSession.book}
                       </p>
-                      <p className="text-sm text-black/60 dark:text-white/60">
-                        👥 {contentSession.group}
+                      <p className="text-sm text-black/60 dark:text-white/60 flex items-center gap-1">
+                        <span>👶</span> {contentSession.group}
+                      </p>
+                      <p className="text-sm text-purple-600 dark:text-purple-400 flex items-center gap-1">
+                        <span>🕐</span> {session.time}
                       </p>
                       
                       {/* Availability Badge */}
@@ -470,8 +476,8 @@ export default async function WorkshopHome({ language }: WorkshopHomeProps) {
                       
                       {/* CTA Button */}
                       <div className="pt-2">
-                        <span className="block w-full text-center rounded-full bg-gradient-to-r from-amber-500 to-orange-500 px-4 py-2 text-sm font-semibold text-white group-hover:from-amber-600 group-hover:to-orange-600 transition-all shadow group-hover:shadow-lg">
-                          {stats.isFull ? t.joinWaitingList : t.registerNow} →
+                        <span className="w-full text-center rounded-full bg-gradient-to-r from-pink-500 to-orange-500 px-4 py-2 text-sm font-bold text-white group-hover:from-pink-600 group-hover:to-orange-600 transition-all shadow-lg group-hover:shadow-xl flex items-center justify-center gap-2">
+                          <span>🎨</span> {stats.isFull ? t.joinWaitingList : t.registerNow} <span>→</span>
                         </span>
                       </div>
                     </div>
