@@ -315,7 +315,7 @@ export default async function WorkshopHome({ language }: WorkshopHomeProps) {
 
   return (
     <main className="mx-auto w-full max-w-4xl px-4 py-8 sm:px-6 lg:px-8 pt-24">
-      <div className="rounded-3xl border-4 border-dashed border-pink-400 bg-white/90 backdrop-blur-sm p-6 shadow-2xl dark:bg-zinc-900/90 sm:p-8 relative overflow-hidden">
+      <div className="rounded-3xl border-4 border-pink-400 bg-white/90 backdrop-blur-sm p-6 shadow-2xl dark:bg-zinc-900/90 sm:p-8 relative overflow-hidden">
         {/* Decorative corner stars */}
         <div className="absolute top-2 right-2 text-3xl animate-bounce">⭐</div>
         <div className="absolute bottom-2 left-2 text-3xl animate-bounce" style={{animationDelay: '0.5s'}}>🌟</div>
@@ -328,7 +328,7 @@ export default async function WorkshopHome({ language }: WorkshopHomeProps) {
               alt="Creative Storytelling & Painting for Children"
               width={600}
               height={400}
-              className="rounded-2xl shadow-2xl border-4 border-yellow-400"
+              className="rounded-2xl shadow-2xl"
               priority
             />
             <div className="absolute -top-4 -left-4 text-4xl animate-bounce">🎨</div>
@@ -429,25 +429,25 @@ export default async function WorkshopHome({ language }: WorkshopHomeProps) {
               {content.team.map((member) => (
                 <div
                   key={member.name}
-                  className="rounded-2xl border-4 border-dashed border-purple-400 overflow-hidden bg-gradient-to-br from-yellow-50 via-pink-50 to-purple-50 dark:from-purple-900/20 dark:to-pink-900/20 hover:scale-[1.02] transition-transform"
+                  className="rounded-2xl border-2 border-purple-400 overflow-hidden bg-gradient-to-br from-yellow-50 via-pink-50 to-purple-50 dark:from-purple-900/20 dark:to-pink-900/20 hover:scale-[1.02] transition-transform"
                 >
-                  <div className="flex flex-col items-center p-6">
-                    <div className="relative w-32 h-32 mb-4">
+                  <div className="flex flex-col items-center p-4">
+                    <div className="relative w-20 h-20 mb-3">
                       <Image
                         src={member.image}
                         alt={member.name}
                         fill
-                        className="rounded-full object-cover border-4 border-yellow-400 shadow-xl"
+                        className="rounded-full object-cover shadow-lg"
                       />
-                      <div className="absolute -bottom-2 -right-2 text-3xl">{member.emoji}</div>
+                      <div className="absolute -bottom-1 -right-1 text-xl">{member.emoji}</div>
                     </div>
-                    <h3 className="text-lg font-bold text-center text-purple-700 dark:text-purple-300">
+                    <h3 className="text-base font-bold text-center text-purple-700 dark:text-purple-300">
                       {member.name}
                     </h3>
-                    <p className="text-sm font-bold text-pink-600 dark:text-pink-400 mb-3 flex items-center gap-1">
+                    <p className="text-xs font-bold text-pink-600 dark:text-pink-400 mb-2 flex items-center gap-1">
                       <span>✨</span> {member.role} <span>✨</span>
                     </p>
-                    <p className="text-sm text-black/70 dark:text-white/70 text-center leading-relaxed">
+                    <p className="text-xs text-black/70 dark:text-white/70 text-center leading-relaxed">
                       {member.bio}
                     </p>
                   </div>
@@ -471,28 +471,37 @@ export default async function WorkshopHome({ language }: WorkshopHomeProps) {
                   <Link
                     key={session.id}
                     href={`/register?session=${session.id}&lang=${language}`}
-                    className="group relative overflow-hidden rounded-2xl border-4 border-dashed border-yellow-400 hover:border-pink-500 transition-all duration-300 hover:shadow-2xl hover:scale-[1.05] bg-white dark:bg-zinc-800"
+                    className="group relative overflow-hidden rounded-2xl border-2 border-purple-300 hover:border-pink-500 transition-all duration-300 hover:shadow-2xl hover:scale-[1.02] bg-white dark:bg-zinc-800"
                   >
                     {/* Session Image */}
-                    <div className="relative h-40 w-full overflow-hidden">
+                    <div className="relative h-48 w-full overflow-hidden">
                       <Image
                         src={session.image}
                         alt={contentSession.book}
                         fill
-                        className="object-cover group-hover:scale-110 transition-transform duration-300"
+                        className="object-cover object-center group-hover:scale-105 transition-transform duration-300"
                       />
-                      <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent" />
+                      <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent" />
+                      {/* Book title on image */}
+                      <div className="absolute bottom-2 left-2 right-2">
+                        <p className="text-white font-bold text-sm drop-shadow-lg flex items-center gap-1">
+                          <span>📖</span> {contentSession.book}
+                        </p>
+                      </div>
+                      {/* Exhibition badge for last session */}
+                      {session.isExhibition && (
+                        <div className="absolute top-2 right-2 bg-yellow-400 text-black text-xs font-bold px-2 py-1 rounded-full">
+                          🎨 نمایشگاه
+                        </div>
+                      )}
                     </div>
                     
                     {/* Content */}
-                    <div className="p-4 space-y-2 bg-gradient-to-br from-yellow-50 to-pink-50 dark:from-zinc-800 dark:to-zinc-800">
-                      <p className="font-bold text-amber-600 dark:text-amber-400 flex items-center gap-1">
+                    <div className="p-3 space-y-1 bg-gradient-to-br from-yellow-50 to-pink-50 dark:from-zinc-800 dark:to-zinc-800">
+                      <p className="font-bold text-amber-600 dark:text-amber-400 flex items-center gap-1 text-sm">
                         <span>📅</span> {contentSession.date}
                       </p>
-                      <p className="font-medium line-clamp-2 flex items-center gap-1">
-                        <span>📖</span> {contentSession.book}
-                      </p>
-                      <p className="text-sm text-black/60 dark:text-white/60 flex items-center gap-1">
+                      <p className="text-sm text-black/70 dark:text-white/70 flex items-center gap-1">
                         <span>👶</span> {contentSession.group}
                       </p>
                       <p className="text-sm text-purple-600 dark:text-purple-400 flex items-center gap-1">
@@ -500,21 +509,21 @@ export default async function WorkshopHome({ language }: WorkshopHomeProps) {
                       </p>
                       
                       {/* Availability Badge */}
-                      <div className="pt-2">
+                      <div className="pt-1">
                         {stats.isFull ? (
-                          <span className="inline-flex items-center gap-1 rounded-full bg-amber-100 dark:bg-amber-900/30 px-3 py-1 text-sm font-medium text-amber-700 dark:text-amber-400">
+                          <span className="inline-flex items-center gap-1 rounded-full bg-amber-100 dark:bg-amber-900/30 px-2 py-0.5 text-xs font-medium text-amber-700 dark:text-amber-400">
                             ⏳ {t.waitingList}
                           </span>
                         ) : (
-                          <span className="inline-flex items-center gap-1 rounded-full bg-green-100 dark:bg-green-900/30 px-3 py-1 text-sm font-medium text-green-700 dark:text-green-400">
+                          <span className="inline-flex items-center gap-1 rounded-full bg-green-100 dark:bg-green-900/30 px-2 py-0.5 text-xs font-medium text-green-700 dark:text-green-400">
                             ✅ {stats.spotsAvailable} {stats.spotsAvailable === 1 ? t.spotAvailable : t.spotsAvailable}
                           </span>
                         )}
                       </div>
                       
                       {/* CTA Button */}
-                      <div className="pt-2">
-                        <span className="w-full text-center rounded-full bg-gradient-to-r from-pink-500 to-orange-500 px-4 py-2 text-sm font-bold text-white group-hover:from-pink-600 group-hover:to-orange-600 transition-all shadow-lg group-hover:shadow-xl flex items-center justify-center gap-2">
+                      <div className="pt-1">
+                        <span className="w-full text-center rounded-full bg-gradient-to-r from-pink-500 to-orange-500 px-3 py-1.5 text-xs font-bold text-white group-hover:from-pink-600 group-hover:to-orange-600 transition-all shadow-lg group-hover:shadow-xl flex items-center justify-center gap-1">
                           <span>🎨</span> {stats.isFull ? t.joinWaitingList : t.registerNow} <span>→</span>
                         </span>
                       </div>
@@ -559,7 +568,7 @@ export default async function WorkshopHome({ language }: WorkshopHomeProps) {
           </div>
 
           {/* Contact Info */}
-          <div className="p-4 rounded-2xl bg-gradient-to-r from-amber-200 to-orange-200 dark:from-amber-900/40 dark:to-orange-900/40 border-4 border-dashed border-amber-500 shadow-lg">
+          <div className="p-4 rounded-2xl bg-gradient-to-r from-amber-200 to-orange-200 dark:from-amber-900/40 dark:to-orange-900/40 border-4 border-amber-500 shadow-lg">
             <h2 className="text-xl font-bold flex items-center gap-2 mb-3">
               <span className="text-2xl">📩</span> {content.registrationTitle}
               <span className="text-2xl">✉️</span>
@@ -584,7 +593,7 @@ export default async function WorkshopHome({ language }: WorkshopHomeProps) {
           </div>
 
           {/* Social Share Section */}
-          <div className="p-4 rounded-2xl bg-gradient-to-r from-pink-100 via-purple-100 to-cyan-100 dark:from-pink-900/30 dark:via-purple-900/30 dark:to-cyan-900/30 border-2 border-dashed border-purple-300 dark:border-purple-600">
+          <div className="p-4 rounded-2xl bg-gradient-to-r from-pink-100 via-purple-100 to-cyan-100 dark:from-pink-900/30 dark:via-purple-900/30 dark:to-cyan-900/30 border-2 border-purple-300 dark:border-purple-600">
             <p className="text-center font-bold text-purple-700 dark:text-purple-300 mb-3 flex items-center justify-center gap-2">
               <span className="text-2xl">🎉</span>
               {t.shareTitle}

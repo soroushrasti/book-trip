@@ -27,6 +27,7 @@ export type SessionInfo = {
   image: string;
   time: string;
   maxCapacity: number;
+  isExhibition?: boolean;
 };
 
 export type SessionData = {
@@ -83,6 +84,7 @@ export const SESSIONS: SessionInfo[] = [
     image: "/group_7_8_oct.jpeg",
     time: "11:45 - 14:15",
     maxCapacity: MAX_CAPACITY,
+    isExhibition: true,
   },
 ];
 

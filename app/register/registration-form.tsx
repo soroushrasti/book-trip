@@ -135,7 +135,7 @@ export default function RegistrationForm({
   return (
     <div dir={isRTL ? "rtl" : "ltr"}>
       {/* Session Card with Image */}
-      <div className="mb-6 rounded-2xl overflow-hidden bg-gradient-to-r from-yellow-100 via-pink-100 to-purple-100 dark:from-yellow-900/30 dark:via-pink-900/30 dark:to-purple-900/30 border-4 border-dashed border-yellow-400 dark:border-yellow-600 shadow-lg">
+      <div className="mb-6 rounded-2xl overflow-hidden bg-gradient-to-r from-yellow-100 via-pink-100 to-purple-100 dark:from-yellow-900/30 dark:via-pink-900/30 dark:to-purple-900/30 border-4 border-yellow-400 dark:border-yellow-600 shadow-lg">
         {/* Session Image */}
         <div className="relative h-48 w-full">
           <Image

@@ -38,7 +38,7 @@ export default async function RegisterPage({ searchParams }: RegisterPageProps) 
     // Show session selection
     return (
       <main className="mx-auto w-full max-w-4xl px-4 py-8 sm:px-6 lg:px-8 pt-24">
-        <div className="rounded-3xl border-4 border-dashed border-purple-400 bg-white/90 backdrop-blur-sm p-6 shadow-2xl dark:bg-zinc-900/90 sm:p-8 relative overflow-hidden">
+        <div className="rounded-3xl border-4 border-purple-400 bg-white/90 backdrop-blur-sm p-6 shadow-2xl dark:bg-zinc-900/90 sm:p-8 relative overflow-hidden">
           {/* Decorative elements */}
           <div className="absolute top-2 right-2 text-3xl animate-bounce">🎨</div>
           <div className="absolute bottom-2 left-2 text-3xl animate-bounce" style={{animationDelay: '0.5s'}}>📚</div>
@@ -89,7 +89,7 @@ export default async function RegisterPage({ searchParams }: RegisterPageProps) 
                 <Link
                   key={session.id}
                   href={`/register?session=${session.id}&lang=${language}`}
-                  className="block p-4 rounded-2xl border-4 border-dashed border-yellow-400 bg-gradient-to-r from-yellow-50 to-pink-50 dark:from-yellow-900/20 dark:to-pink-900/20 hover:border-pink-500 hover:scale-[1.02] transition-all group shadow-lg"
+                  className="block p-4 rounded-2xl border-4 border-yellow-400 bg-gradient-to-r from-yellow-50 to-pink-50 dark:from-yellow-900/20 dark:to-pink-900/20 hover:border-pink-500 hover:scale-[1.02] transition-all group shadow-lg"
                 >
                   <div className="flex items-center justify-between">
                     <div className="flex items-center gap-3">
@@ -142,7 +142,7 @@ export default async function RegisterPage({ searchParams }: RegisterPageProps) 
 
   return (
     <main className="mx-auto w-full max-w-2xl px-4 py-8 sm:px-6 lg:px-8 pt-24">
-      <div className="rounded-3xl border-4 border-dashed border-pink-400 bg-white/90 backdrop-blur-sm p-6 shadow-2xl dark:bg-zinc-900/90 sm:p-8 relative overflow-hidden">
+      <div className="rounded-3xl border-4 border-pink-400 bg-white/90 backdrop-blur-sm p-6 shadow-2xl dark:bg-zinc-900/90 sm:p-8 relative overflow-hidden">
         {/* Decorative elements */}
         <div className="absolute top-2 right-2 text-3xl animate-bounce">✨</div>
         <div className="absolute bottom-2 left-2 text-3xl animate-bounce" style={{animationDelay: '0.5s'}}>🎨</div>
