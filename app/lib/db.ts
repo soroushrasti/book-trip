@@ -10,6 +10,7 @@ const pool = new Pool({
 export async function initializeDatabase(): Promise<void> {
   const client = await pool.connect();
   try {
+    // Create table if not exists
     await client.query(`
       CREATE TABLE IF NOT EXISTS registrations (
         id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
@@ -26,7 +27,39 @@ export async function initializeDatabase(): Promise<void> {
       CREATE INDEX IF NOT EXISTS idx_registrations_session_id ON registrations(session_id);
       CREATE INDEX IF NOT EXISTS idx_registrations_is_waiting_list ON registrations(is_waiting_list);
     `);
-    console.log("Database initialized successfully");
+
+    // Run migrations - add photo_consent column if it doesn't exist
+    await client.query(`
+      DO $$ 
+      BEGIN 
+        IF NOT EXISTS (
+          SELECT 1 FROM information_schema.columns 
+          WHERE table_name = 'registrations' AND column_name = 'photo_consent'
+        ) THEN 
+          ALTER TABLE registrations ADD COLUMN photo_consent BOOLEAN DEFAULT FALSE;
+        END IF;
+      END $$;
+    `);
+
+    // Migration: Remove old address columns if they exist (cleanup)
+    await client.query(`
+      DO $$ 
+      BEGIN 
+        IF EXISTS (
+          SELECT 1 FROM information_schema.columns 
+          WHERE table_name = 'registrations' AND column_name = 'street'
+        ) THEN 
+          ALTER TABLE registrations 
+            DROP COLUMN IF EXISTS street,
+            DROP COLUMN IF EXISTS house_number,
+            DROP COLUMN IF EXISTS post_code,
+            DROP COLUMN IF EXISTS city,
+            DROP COLUMN IF EXISTS country;
+        END IF;
+      END $$;
+    `);
+
+    console.log("Database initialized and migrations completed successfully");
   } finally {
     client.release();
   }
