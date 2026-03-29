@@ -1,0 +1,12 @@
+[build]
+# Disable build cache to always get fresh images
+nixpacksVersion = "1.38.0"
+
+[build.nixpacksPlan]
+env = { NIXPACKS_NO_CACHE = "1" }
+
+[deploy]
+# Restart command
+restartPolicyType = "ON_FAILURE"
+restartPolicyMaxRetries = 3
+
