@@ -437,7 +437,7 @@ export default async function WorkshopHome({ language }: WorkshopHomeProps) {
                         src={member.image}
                         alt={member.name}
                         fill
-                        className={`rounded-full object-cover shadow-lg ${member.image.includes('Nastaran') ? 'object-[center_30%]' : ''}`}
+                        className={`rounded-full object-cover shadow-lg ${member.image.includes('Nastaran') ? 'object-[center_20%]' : ''}`}
                       />
                       <div className="absolute -bottom-1 -right-1 text-xl">{member.emoji}</div>
                     </div>
