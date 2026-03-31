@@ -58,24 +58,24 @@ export default function RegistrationForm({
   // Localized session info
   const localizedSessions: Record<Language, Record<SessionId, { book: string; group: string }>> = {
     nl: {
-      "2026-04-25": { book: "De mooiste vis van de zee", group: "Groep 1-2" },
-      "2026-05-23": { book: "Billy the Bat's big adventure", group: "Groep 1-2" },
-      "2026-08-22": { book: "Draw me a star", group: "Groep 3-4" },
-      "2026-09-19": { book: "The tiny seed", group: "Groep 5-6" },
+      "2026-04-25": { book: "The Rainbow Fish", group: "Groep 1-2" },
+      "2026-05-23": { book: "Billy the Bat's Big Adventure", group: "Groep 1-2" },
+      "2026-08-22": { book: "Draw Me a Star", group: "Groep 3-4" },
+      "2026-09-19": { book: "The Tiny Seed", group: "Groep 5-6" },
       "2026-10-17": { book: "Flotsam", group: "Groep 7-8" },
     },
     en: {
       "2026-04-25": { book: "The Rainbow Fish", group: "Group 1-2" },
-      "2026-05-23": { book: "Billy the Bat's big adventure", group: "Group 1-2" },
-      "2026-08-22": { book: "Draw me a star", group: "Group 3-4" },
-      "2026-09-19": { book: "The tiny seed", group: "Group 5-6" },
+      "2026-05-23": { book: "Billy the Bat's Big Adventure", group: "Group 1-2" },
+      "2026-08-22": { book: "Draw Me a Star", group: "Group 3-4" },
+      "2026-09-19": { book: "The Tiny Seed", group: "Group 5-6" },
       "2026-10-17": { book: "Flotsam", group: "Group 7-8" },
     },
     fa: {
-      "2026-04-25": { book: "زیباترین ماهی دریا", group: "گروه سنی: پایه ۱ و ۲" },
-      "2026-05-23": { book: "Billy the Bat's big adventure", group: "گروه سنی: پایه ۱ و ۲" },
-      "2026-08-22": { book: "برایم یک ستاره بکش", group: "گروه سنی: پایه ۳ و ۴" },
-      "2026-09-19": { book: "دانه کوچک", group: "گروه سنی: پایه ۵ و ۶" },
+      "2026-04-25": { book: "The Rainbow Fish", group: "گروه سنی: پایه ۱ و ۲" },
+      "2026-05-23": { book: "Billy the Bat's Big Adventure", group: "گروه سنی: پایه ۱ و ۲" },
+      "2026-08-22": { book: "Draw Me a Star", group: "گروه سنی: پایه ۳ و ۴" },
+      "2026-09-19": { book: "The Tiny Seed", group: "گروه سنی: پایه ۵ و ۶" },
       "2026-10-17": { book: "Flotsam", group: "گروه سنی: پایه ۷ و ۸" },
     },
   };

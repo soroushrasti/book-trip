@@ -43,7 +43,7 @@ export const SESSIONS: SessionInfo[] = [
   {
     id: "2026-04-25",
     date: "2026-04-25",
-    book: "De mooiste vis van de zee",
+    book: "The Rainbow Fish",
     group: "Groep 1-2",
     image: "/book_april_1_2.jpeg",
     time: "11:45 - 14:15",
@@ -61,7 +61,7 @@ export const SESSIONS: SessionInfo[] = [
   {
     id: "2026-08-22",
     date: "2026-08-22",
-    book: "Draw me a star",
+    book: "Draw Me a Star",
     group: "Groep 3-4",
     image: "/book_august_3_4.jpeg",
     time: "11:45 - 14:15",
@@ -70,7 +70,7 @@ export const SESSIONS: SessionInfo[] = [
   {
     id: "2026-09-19",
     date: "2026-09-19",
-    book: "The tiny seed",
+    book: "The Tiny Seed",
     group: "Groep 5-6",
     image: "/book_sept_5_6.jpeg",
     time: "11:45 - 14:15",

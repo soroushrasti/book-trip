@@ -54,7 +54,7 @@ type Content = {
 
 const contentByLanguage: Record<Language, Content> = {
   nl: {
-    announcement: "Aanmelding geo pend - Creatieve kinderworkshops",
+    announcement: "Aanmelding geopend - Creatieve kinderworkshops",
     introQuestion: "Is jouw kind dol op verhalen en creativiteit?",
     introBody:
       "In dit unieke programma combineren kinderen storytelling en kunst om hun fantasie en expressie te ontwikkelen.",
@@ -67,10 +67,10 @@ const contentByLanguage: Record<Language, Content> = {
     ],
     booksTitle: "Boeken:",
     books: [
-      { title: "De mooiste vis van de zee", ageGroup: "Groep 1-2" },
-      { title: "Billy the Bat's big adventure", ageGroup: "Groep 1-2" },
-      { title: "Draw me a star", ageGroup: "Groep 3-4" },
-      { title: "The tiny seed", ageGroup: "Groep 5-6" },
+      { title: "The Rainbow Fish", ageGroup: "Groep 1-2" },
+      { title: "Billy the Bat's Big Adventure", ageGroup: "Groep 1-2" },
+      { title: "Draw Me a Star", ageGroup: "Groep 3-4" },
+      { title: "The Tiny Seed", ageGroup: "Groep 5-6" },
       { title: "Flotsam", ageGroup: "Groep 7-8" },
     ],
     teamTitle: "Maak kennis met het team",
@@ -94,22 +94,22 @@ const contentByLanguage: Record<Language, Content> = {
     sessions: [
       {
         date: "25 april 2026",
-        book: "De mooiste vis van de zee",
+        book: "The Rainbow Fish",
         group: "Groep 1-2",
       },
       {
         date: "23 mei 2026",
-        book: "Billy the Bat's big adventure",
+        book: "Billy the Bat's Big Adventure",
         group: "Groep 1-2",
       },
       {
         date: "22 augustus 2026",
-        book: "Draw me a star",
+        book: "Draw Me a Star",
         group: "Groep 3-4",
       },
       {
         date: "19 september 2026",
-        book: "The tiny seed",
+        book: "The Tiny Seed",
         group: "Groep 5-6",
       },
       {
@@ -150,9 +150,9 @@ const contentByLanguage: Record<Language, Content> = {
     booksTitle: "Books:",
     books: [
       { title: "The Rainbow Fish", ageGroup: "Group 1-2" },
-      { title: "Billy the Bat's big adventure", ageGroup: "Group 1-2" },
-      { title: "Draw me a star", ageGroup: "Group 3-4" },
-      { title: "The tiny seed", ageGroup: "Group 5-6" },
+      { title: "Billy the Bat's Big Adventure", ageGroup: "Group 1-2" },
+      { title: "Draw Me a Star", ageGroup: "Group 3-4" },
+      { title: "The Tiny Seed", ageGroup: "Group 5-6" },
       { title: "Flotsam", ageGroup: "Group 7-8" },
     ],
     teamTitle: "Meet the Team",
@@ -181,17 +181,17 @@ const contentByLanguage: Record<Language, Content> = {
       },
       {
         date: "May 23, 2026",
-        book: "Billy the Bat's big adventure",
+        book: "Billy the Bat's Big Adventure",
         group: "Group 1-2",
       },
       {
         date: "August 22, 2026",
-        book: "Draw me a star",
+        book: "Draw Me a Star",
         group: "Group 3-4",
       },
       {
         date: "September 19, 2026",
-        book: "The tiny seed",
+        book: "The Tiny Seed",
         group: "Group 5-6",
       },
       {
@@ -229,10 +229,10 @@ const contentByLanguage: Record<Language, Content> = {
     ],
     booksTitle: "کتاب‌ها:",
     books: [
-      { title: "زیباترین ماهی دریا", ageGroup: "پایه ۱ و ۲" },
-      { title: "Billy the Bat's big adventure", ageGroup: "پایه ۱ و ۲" },
-      { title: "برایم یک ستاره بکش", ageGroup: "پایه ۳ و ۴" },
-      { title: "دانه کوچک", ageGroup: "پایه ۵ و ۶" },
+      { title: "The Rainbow Fish", ageGroup: "پایه ۱ و ۲" },
+      { title: "Billy the Bat's Big Adventure", ageGroup: "پایه ۱ و ۲" },
+      { title: "Draw Me a Star", ageGroup: "پایه ۳ و ۴" },
+      { title: "The Tiny Seed", ageGroup: "پایه ۵ و ۶" },
       { title: "Flotsam", ageGroup: "پایه ۷ و ۸" },
     ],
     teamTitle: "با تیم ما آشنا شوید",
@@ -256,22 +256,22 @@ const contentByLanguage: Record<Language, Content> = {
     sessions: [
       {
         date: "۲۵ آوریل ۲۰۲۶",
-        book: "زیباترین ماهی دریا",
+        book: "The Rainbow Fish",
         group: "گروه سنی: پایه ۱ و ۲",
       },
       {
         date: "۲۳ مه ۲۰۲۶",
-        book: "Billy the Bat's big adventure",
+        book: "Billy the Bat's Big Adventure",
         group: "گروه سنی: پایه ۱ و ۲",
       },
       {
         date: "۲۲ آگوست ۲۰۲۶",
-        book: "برایم یک ستاره بکش",
+        book: "Draw Me a Star",
         group: "گروه سنی: پایه ۳ و ۴",
       },
       {
         date: "۱۹ سپتامبر ۲۰۲۶",
-        book: "دانه کوچک",
+        book: "The Tiny Seed",
         group: "گروه سنی: پایه ۵ و ۶",
       },
       {
@@ -437,7 +437,7 @@ export default async function WorkshopHome({ language }: WorkshopHomeProps) {
                         src={member.image}
                         alt={member.name}
                         fill
-                        className="rounded-full object-cover shadow-lg"
+                        className={`rounded-full object-cover shadow-lg ${member.image.includes('Nastaran') ? 'object-[center_30%]' : ''}`}
                       />
                       <div className="absolute -bottom-1 -right-1 text-xl">{member.emoji}</div>
                     </div>
