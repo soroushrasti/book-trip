@@ -21,6 +21,7 @@ type TeamMember = {
   bio: string;
   image: string;
   emoji: string;
+  instagram?: string;
 };
 
 type Content = {
@@ -88,6 +89,7 @@ const contentByLanguage: Record<Language, Content> = {
         bio: "Nastaran Fadaei Heidari is storytelling docent en oprichter van Siblings Education. Zij neemt kinderen mee in inspirerende en meertalige verhalen en creëert een speelse omgeving waarin taal, verbeelding en creativiteit samenkomen.",
         image: "/Nastaran_Fadaei_Heidari.jpeg",
         emoji: "📚",
+        instagram: "https://www.instagram.com/siblings_education?igsh=MTJ6aGJ0MDRiMDA2Ng==",
       },
     ],
     scheduleTitle: "Data & leeftijdsgroepen:",
@@ -123,12 +125,12 @@ const contentByLanguage: Record<Language, Content> = {
     locationLabel: "Locatie",
     locationValue: "Buurtcentrum Sint Pieter - Maastricht",
     timeLabel: "Tijd",
-    timeValue: "11:45 - 14:15",
+    timeValue: "12:00 - 14:00 (17 okt: 12:00 - 15:00)",
     participation:
       "Gratis deelname (met ondersteuning van Gemeente Maastricht)",
     catering: "Catering en materialen inbegrepen",
     exhibition: "Eindtentoonstelling van kinderwerken",
-    registrationTitle: "Aanmelden:",
+    registrationTitle: "Meer informatie:",
     emailLabel: "Email",
     emailValue: "h.teimoory@gmail.com",
     phoneLabel: "Tel",
@@ -170,6 +172,7 @@ const contentByLanguage: Record<Language, Content> = {
         bio: "Nastaran Fadaei Heidari is a storytelling instructor and founder of Siblings Education. She brings stories to life in a multilingual setting, creating a playful and engaging space where children connect with language, imagination, and creativity.",
         image: "/Nastaran_Fadaei_Heidari.jpeg",
         emoji: "📚",
+        instagram: "https://www.instagram.com/siblings_education?igsh=MTJ6aGJ0MDRiMDA2Ng==",
       },
     ],
     scheduleTitle: "Dates & age groups:",
@@ -204,11 +207,11 @@ const contentByLanguage: Record<Language, Content> = {
     locationLabel: "Location",
     locationValue: "Buurtcentrum Sint Pieter - Maastricht",
     timeLabel: "Time",
-    timeValue: "11:45 - 14:15",
+    timeValue: "12:00 - 14:00 (17 Oct: 12:00 - 15:00)",
     participation: "Free participation (supported by Municipality of Maastricht)",
     catering: "Snacks and materials included",
     exhibition: "Final exhibition of children's artworks",
-    registrationTitle: "Registration:",
+    registrationTitle: "More information:",
     emailLabel: "Email",
     emailValue: "h.teimoory@gmail.com",
     phoneLabel: "Phone",
@@ -250,6 +253,7 @@ const contentByLanguage: Record<Language, Content> = {
         bio: "نسترن فدایی حیدری مربی قصه‌گویی و بنیان‌گذار Siblings Education است. او داستان‌ها را در محیطی چندزبانه زنده می‌کند و فضایی بازیگوش و جذاب ایجاد می‌کند که در آن کودکان با زبان، تخیل و خلاقیت ارتباط برقرار می‌کنند.",
         image: "/Nastaran_Fadaei_Heidari.jpeg",
         emoji: "📚",
+        instagram: "https://www.instagram.com/siblings_education?igsh=MTJ6aGJ0MDRiMDA2Ng==",
       },
     ],
     scheduleTitle: "تاریخ ها و گروه های سنی:",
@@ -284,11 +288,11 @@ const contentByLanguage: Record<Language, Content> = {
     locationLabel: "محل برگزاری",
     locationValue: "Buurtcentrum Sint Pieter - Maastricht",
     timeLabel: "زمان",
-    timeValue: "11:45 - 14:15",
+    timeValue: "12:00 - 14:00 (17 اکتبر: 12:00 - 15:00)",
     participation: "شرکت رایگان (با حمایت شهرداری ماستریخت)",
     catering: "پذیرایی و متریال فراهم است",
     exhibition: "نمایشگاه پایانی آثار کودکان",
-    registrationTitle: "ثبت نام:",
+    registrationTitle: "اطلاعات بیشتر:",
     emailLabel: "ایمیل",
     emailValue: "h.teimoory@gmail.com",
     phoneLabel: "تلفن",
@@ -450,6 +454,19 @@ export default async function WorkshopHome({ language }: WorkshopHomeProps) {
                     <p className="text-xs text-black/70 dark:text-white/70 text-center leading-relaxed">
                       {member.bio}
                     </p>
+                    {member.instagram && (
+                      <a
+                        href={member.instagram}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="mt-2 flex items-center gap-1 px-3 py-1 rounded-full bg-gradient-to-r from-purple-500 via-pink-500 to-orange-500 text-white text-xs font-bold hover:from-purple-600 hover:via-pink-600 hover:to-orange-600 transition transform hover:scale-105 shadow"
+                      >
+                        <svg className="w-3.5 h-3.5" fill="currentColor" viewBox="0 0 24 24">
+                          <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 1 0 0 12.324 6.162 6.162 0 0 0 0-12.324zM12 16a4 4 0 1 1 0-8 4 4 0 0 1 0 8zm6.406-11.845a1.44 1.44 0 1 0 0 2.881 1.44 1.44 0 0 0 0-2.881z"/>
+                        </svg>
+                        @siblings_education
+                      </a>
+                    )}
                   </div>
                 </div>
               ))}

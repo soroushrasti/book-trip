@@ -46,7 +46,7 @@ export const SESSIONS: SessionInfo[] = [
     book: "The Rainbow Fish",
     group: "Groep 1-2",
     image: "/book_april_1_2.jpeg",
-    time: "11:45 - 14:15",
+    time: "12:00 - 14:00",
     maxCapacity: MAX_CAPACITY,
   },
   {
@@ -55,7 +55,7 @@ export const SESSIONS: SessionInfo[] = [
     book: "Billy the Bat's Big Adventure",
     group: "Groep 1-2",
     image: "/book_may_1_2.jpeg",
-    time: "11:45 - 14:15",
+    time: "12:00 - 14:00",
     maxCapacity: MAX_CAPACITY,
   },
   {
@@ -64,7 +64,7 @@ export const SESSIONS: SessionInfo[] = [
     book: "Draw Me a Star",
     group: "Groep 3-4",
     image: "/book_august_3_4.jpeg",
-    time: "11:45 - 14:15",
+    time: "12:00 - 14:00",
     maxCapacity: MAX_CAPACITY,
   },
   {
@@ -73,7 +73,7 @@ export const SESSIONS: SessionInfo[] = [
     book: "The Tiny Seed",
     group: "Groep 5-6",
     image: "/book_sept_5_6.jpeg",
-    time: "11:45 - 14:15",
+    time: "12:00 - 14:00",
     maxCapacity: MAX_CAPACITY,
   },
   {
@@ -82,7 +82,7 @@ export const SESSIONS: SessionInfo[] = [
     book: "Flotsam",
     group: "Groep 7-8",
     image: "/book_oct_7_8.jpeg",
-    time: "11:45 - 14:15",
+    time: "12:00 - 15:00",
     maxCapacity: MAX_CAPACITY,
     isExhibition: true,
   },
