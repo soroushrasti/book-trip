@@ -134,7 +134,7 @@ const contentByLanguage: Record<Language, Content> = {
     emailLabel: "Email",
     emailValue: "h.teimoory@gmail.com",
     phoneLabel: "Tel",
-    phoneValue: "063371716",
+    phoneValue: "+31 633721716",
     limitedNotice: "Beperkt aantal plaatsen - meld je snel aan!",
   },
   en: {
@@ -215,7 +215,7 @@ const contentByLanguage: Record<Language, Content> = {
     emailLabel: "Email",
     emailValue: "h.teimoory@gmail.com",
     phoneLabel: "Phone",
-    phoneValue: "063371716",
+    phoneValue: "+31 633721716",
     limitedNotice: "Limited spots available - register soon!",
   },
   fa: {
@@ -296,7 +296,7 @@ const contentByLanguage: Record<Language, Content> = {
     emailLabel: "ایمیل",
     emailValue: "h.teimoory@gmail.com",
     phoneLabel: "تلفن",
-    phoneValue: "063371716",
+    phoneValue: "+31 633721716",
     limitedNotice: "ظرفیت محدود است - زودتر ثبت نام کنید!",
   },
 };
