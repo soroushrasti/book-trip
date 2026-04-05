@@ -136,6 +136,57 @@ export async function getAllSessionStats(): Promise<
   return stats;
 }
 
+export async function getAllRegistrations(): Promise<
+  Record<SessionId, { registrations: Registration[]; waitingList: Registration[] }>
+> {
+  const sessionIds: SessionId[] = [
+    "2026-04-25",
+    "2026-05-23",
+    "2026-08-22",
+    "2026-09-19",
+    "2026-10-17",
+  ];
+
+  if (isUsingDatabase()) {
+    await ensureDbInitialized();
+    const result = await pool.query(
+      `SELECT id, session_id, first_name, last_name, phone_number, email, photo_consent, is_waiting_list, created_at
+       FROM registrations ORDER BY session_id, created_at`
+    );
+
+    const data = Object.fromEntries(
+        sessionIds.map((id) => [id, { registrations: [] as Registration[], waitingList: [] as Registration[] }])
+      ) as unknown as Record<SessionId, { registrations: Registration[]; waitingList: Registration[] }>;
+
+    for (const row of result.rows) {
+      const reg: Registration = {
+        id: row.id,
+        sessionId: row.session_id,
+        firstName: row.first_name,
+        lastName: row.last_name,
+        phoneNumber: row.phone_number,
+        email: row.email,
+        photoConsent: row.photo_consent,
+        isWaitingList: row.is_waiting_list,
+        createdAt: row.created_at.toISOString(),
+      };
+      if (data[reg.sessionId]) {
+        if (reg.isWaitingList) {
+          data[reg.sessionId].waitingList.push(reg);
+        } else {
+          data[reg.sessionId].registrations.push(reg);
+        }
+      }
+    }
+    return data;
+  }
+
+  // File-based fallback
+  return getRegistrationDataFromFile() as Promise<
+    Record<SessionId, { registrations: Registration[]; waitingList: Registration[] }>
+  >;
+}
+
 export async function addRegistration(
   sessionId: SessionId,
   registration: Omit<Registration, "id" | "createdAt" | "isWaitingList">
