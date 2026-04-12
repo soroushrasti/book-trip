@@ -47,6 +47,10 @@ export type Translations = {
   bookLabel: string;
   ageGroupLabel: string;
   exhibition: string;
+
+  // Full session
+  registrationFull: string;
+  registrationFullDesc: string;
 };
 
 export const translations: Record<Language, Translations> = {
@@ -89,6 +93,8 @@ export const translations: Record<Language, Translations> = {
     bookLabel: "Boek",
     ageGroupLabel: "Leeftijdsgroep",
     exhibition: "Tentoonstelling",
+    registrationFull: "Aanmelding is vol",
+    registrationFullDesc: "Alle plaatsen voor deze workshop zijn bezet. Kies een andere sessie.",
   },
   en: {
     spotsAvailable: "spots available",
@@ -129,6 +135,8 @@ export const translations: Record<Language, Translations> = {
     bookLabel: "Book",
     ageGroupLabel: "Age group",
     exhibition: "Exhibition",
+    registrationFull: "Registration is full",
+    registrationFullDesc: "All spots for this workshop are taken. Please choose a different session.",
   },
   fa: {
     spotsAvailable: "جای خالی",
@@ -169,6 +177,8 @@ export const translations: Record<Language, Translations> = {
     bookLabel: "کتاب",
     ageGroupLabel: "گروه سنی",
     exhibition: "نمایشگاه",
+    registrationFull: "ظرفیت تکمیل شد",
+    registrationFullDesc: "تمام جاهای این کارگاه پر شده است. لطفاً یک جلسه دیگر انتخاب کنید.",
   },
 };
 

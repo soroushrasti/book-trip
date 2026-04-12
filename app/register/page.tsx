@@ -162,6 +162,7 @@ export default async function RegisterPage({ searchParams }: RegisterPageProps) 
   }
 
   const stats = await getSessionStats(sessionId);
+  const session = SESSIONS.find((s) => s.id === sessionId);
 
   return (
     <main className="mx-auto w-full max-w-2xl px-4 py-8 sm:px-6 lg:px-8 pt-24">
@@ -200,14 +201,50 @@ export default async function RegisterPage({ searchParams }: RegisterPageProps) 
           </div>
         </div>
 
-        <RegistrationForm
-          language={language}
-          sessionId={sessionId}
-          sessionStats={{
-            registeredCount: stats.registeredCount,
-            spotsAvailable: stats.spotsAvailable,
-          }}
-        />
+        {stats.isFull ? (
+          <div className="text-center space-y-6 py-4" dir={isRTL ? "rtl" : "ltr"}>
+            <div className="text-8xl">🚫</div>
+            <h2 className="text-2xl font-bold text-red-600 dark:text-red-400">
+              {t.registrationFull}
+            </h2>
+            {session && (
+              <div className="space-y-1 text-gray-600 dark:text-gray-400">
+                <p className="text-lg flex items-center justify-center gap-2">
+                  <span className="text-2xl">📖</span> {session.book}
+                </p>
+                <p className="text-lg flex items-center justify-center gap-2">
+                  <span className="text-2xl">📅</span> {new Date(session.date).toLocaleDateString(language === "nl" ? "nl-NL" : language === "fa" ? "fa-IR" : "en-US", { weekday: "long", year: "numeric", month: "long", day: "numeric" })}
+                </p>
+              </div>
+            )}
+            <p className="text-gray-500 dark:text-gray-400">{t.registrationFullDesc}</p>
+            <div className="flex flex-col sm:flex-row gap-4 justify-center pt-2">
+              <Link
+                href={`/register?lang=${language}`}
+                className="inline-flex items-center justify-center gap-2 rounded-full bg-gradient-to-r from-purple-500 to-pink-500 px-6 py-3 font-bold text-white hover:from-purple-600 hover:to-pink-600 transition shadow-lg transform hover:scale-105"
+              >
+                <span className="text-xl">📋</span>
+                {t.sessionLabel}
+              </Link>
+              <Link
+                href={language === "nl" ? "/" : `/?lang=${language}`}
+                className="inline-flex items-center justify-center gap-2 rounded-full border-2 border-purple-400 dark:border-purple-500 px-6 py-3 font-bold text-purple-600 dark:text-purple-400 hover:bg-purple-50 dark:hover:bg-purple-900/20 transition transform hover:scale-105"
+              >
+                <span className="text-xl">🏠</span>
+                {t.backToHome}
+              </Link>
+            </div>
+          </div>
+        ) : (
+          <RegistrationForm
+            language={language}
+            sessionId={sessionId}
+            sessionStats={{
+              registeredCount: stats.registeredCount,
+              spotsAvailable: stats.spotsAvailable,
+            }}
+          />
+        )}
       </div>
     </main>
   );
