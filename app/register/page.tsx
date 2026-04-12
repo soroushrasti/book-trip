@@ -85,6 +85,36 @@ export default async function RegisterPage({ searchParams }: RegisterPageProps) 
             {SESSIONS.map(async (session, index) => {
               const stats = await getSessionStats(session.id);
               const emojis = ['🐠', '⭐', '🌱', '🌊', '👑'];
+              if (stats.isFull) {
+                return (
+                  <div
+                    key={session.id}
+                    className="block p-4 rounded-2xl border-4 border-gray-300 bg-gradient-to-r from-gray-50 to-gray-100 dark:from-gray-900/20 dark:to-gray-800/20 opacity-60 shadow-lg cursor-not-allowed"
+                  >
+                    <div className="flex items-center justify-between">
+                      <div className="flex items-center gap-3">
+                        <span className="text-4xl">{emojis[index]}</span>
+                        <div>
+                          <p className="font-bold text-lg text-gray-500 dark:text-gray-400 flex items-center gap-2">
+                            <span>📖</span> {session.book}
+                          </p>
+                          <p className="text-sm text-gray-400 dark:text-gray-500 flex items-center gap-1">
+                            <span>👶</span> {session.group}
+                          </p>
+                          <p className="text-sm text-gray-400 dark:text-gray-500 flex items-center gap-1">
+                            <span>🕐</span> {session.time}
+                          </p>
+                        </div>
+                      </div>
+                      <div className="text-right">
+                        <span className="text-sm font-bold px-3 py-1 rounded-full bg-red-100 text-red-700 dark:bg-red-900/50 dark:text-red-400">
+                          🚫 {t.full}
+                        </span>
+                      </div>
+                    </div>
+                  </div>
+                );
+              }
               return (
                 <Link
                   key={session.id}
@@ -107,15 +137,8 @@ export default async function RegisterPage({ searchParams }: RegisterPageProps) 
                       </div>
                     </div>
                     <div className="text-right">
-                      <span className={`text-sm font-bold px-3 py-1 rounded-full ${
-                        stats.isFull 
-                          ? "bg-amber-100 text-amber-700 dark:bg-amber-900/50 dark:text-amber-400" 
-                          : "bg-green-100 text-green-700 dark:bg-green-900/50 dark:text-green-400"
-                      }`}>
-                        {stats.isFull 
-                          ? `⏳ ${t.waitingList}`
-                          : `✅ ${stats.spotsAvailable} ${stats.spotsAvailable === 1 ? t.spotAvailable : t.spotsAvailable}`
-                        }
+                      <span className="text-sm font-bold px-3 py-1 rounded-full bg-green-100 text-green-700 dark:bg-green-900/50 dark:text-green-400">
+                        ✅ {stats.spotsAvailable} {stats.spotsAvailable === 1 ? t.spotAvailable : t.spotsAvailable}
                       </span>
                     </div>
                   </div>
@@ -180,7 +203,6 @@ export default async function RegisterPage({ searchParams }: RegisterPageProps) 
         <RegistrationForm
           language={language}
           sessionId={sessionId}
-          isWaitingList={stats.isFull}
           sessionStats={{
             registeredCount: stats.registeredCount,
             spotsAvailable: stats.spotsAvailable,

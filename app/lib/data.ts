@@ -190,26 +190,23 @@ export async function getAllRegistrations(): Promise<
 export async function addRegistration(
   sessionId: SessionId,
   registration: Omit<Registration, "id" | "createdAt" | "isWaitingList">
-): Promise<{ success: boolean; isWaitingList: boolean; message: string }> {
+): Promise<{ success: boolean; message: string }> {
   if (isUsingDatabase()) {
     await ensureDbInitialized();
     
     const registeredCount = await getRegistrationCountFromDb(sessionId, false);
-    const isWaitingList = registeredCount >= MAX_CAPACITY;
-    
-    await addRegistrationToDb(sessionId, registration, isWaitingList);
-    
-    if (isWaitingList) {
+
+    if (registeredCount >= MAX_CAPACITY) {
       return {
-        success: true,
-        isWaitingList: true,
-        message: "Added to waiting list",
+        success: false,
+        message: "Session is full",
       };
     }
-    
+
+    await addRegistrationToDb(sessionId, registration, false);
+
     return {
       success: true,
-      isWaitingList: false,
       message: "Registration successful",
     };
   }
@@ -219,7 +216,11 @@ export async function addRegistration(
   const session = data[sessionId];
   
   if (!session) {
-    return { success: false, isWaitingList: false, message: "Session not found" };
+    return { success: false, message: "Session not found" };
+  }
+
+  if (session.registrations.length >= MAX_CAPACITY) {
+    return { success: false, message: "Session is full" };
   }
 
   const newRegistration: Registration = {
@@ -227,24 +228,13 @@ export async function addRegistration(
     id: crypto.randomUUID(),
     sessionId,
     createdAt: new Date().toISOString(),
-    isWaitingList: session.registrations.length >= MAX_CAPACITY,
+    isWaitingList: false,
   };
-
-  if (session.registrations.length >= MAX_CAPACITY) {
-    session.waitingList.push(newRegistration);
-    await saveRegistrationDataToFile(data);
-    return {
-      success: true,
-      isWaitingList: true,
-      message: "Added to waiting list",
-    };
-  }
 
   session.registrations.push(newRegistration);
   await saveRegistrationDataToFile(data);
   return {
     success: true,
-    isWaitingList: false,
     message: "Registration successful",
   };
 }

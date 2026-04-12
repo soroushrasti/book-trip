@@ -9,14 +9,12 @@ import Image from "next/image";
 
 const initialState: FormState = {
   success: false,
-  isWaitingList: false,
   message: "",
 };
 
 type RegistrationFormProps = {
   language: Language;
   sessionId: SessionId;
-  isWaitingList: boolean;
   sessionStats: {
     registeredCount: number;
     spotsAvailable: number;
@@ -42,7 +40,6 @@ function formatDate(dateStr: string, language: Language): string {
 export default function RegistrationForm({
   language,
   sessionId,
-  isWaitingList,
   sessionStats,
 }: RegistrationFormProps) {
   const [state, formAction, pending] = useActionState(registerAction, initialState);
@@ -85,9 +82,9 @@ export default function RegistrationForm({
   if (state.success) {
     return (
       <div className="text-center space-y-6" dir={isRTL ? "rtl" : "ltr"}>
-        <div className="text-8xl animate-bounce">{state.isWaitingList ? "⏳" : "🎉"}</div>
+        <div className="text-8xl animate-bounce">🎉</div>
         <h2 className="text-2xl font-bold text-green-600 dark:text-green-400">
-          {state.isWaitingList ? t.waitingListSuccess : t.registrationSuccess}
+          {t.registrationSuccess}
         </h2>
         
         {/* Session Image */}
@@ -163,24 +160,17 @@ export default function RegistrationForm({
             <span>{session.time}</span>
           </p>
           <p className="font-bold mt-2">
-            {isWaitingList ? (
-              <span className="inline-flex items-center gap-2 text-amber-600 dark:text-amber-400 bg-amber-100 dark:bg-amber-900/30 px-3 py-1 rounded-full">
-                <span className="text-xl">⏳</span>
-                {t.waitingList} - {sessionStats.registeredCount}/15 {t.full.toLowerCase()}
-              </span>
-            ) : (
-              <span className="inline-flex items-center gap-2 text-green-600 dark:text-green-400 bg-green-100 dark:bg-green-900/30 px-3 py-1 rounded-full">
-                <span className="text-xl">✅</span>
-                {sessionStats.spotsAvailable} {sessionStats.spotsAvailable === 1 ? t.spotAvailable : t.spotsAvailable}
-              </span>
-            )}
+            <span className="inline-flex items-center gap-2 text-green-600 dark:text-green-400 bg-green-100 dark:bg-green-900/30 px-3 py-1 rounded-full">
+              <span className="text-xl">✅</span>
+              {sessionStats.spotsAvailable} {sessionStats.spotsAvailable === 1 ? t.spotAvailable : t.spotsAvailable}
+            </span>
           </p>
         </div>
       </div>
 
       <h2 className="text-2xl font-bold mb-6 flex items-center gap-3">
-        <span className="text-3xl">{isWaitingList ? "⏳" : "✏️"}</span>
-        {isWaitingList ? t.waitingListTitle : t.registrationTitle}
+        <span className="text-3xl">✏️</span>
+        {t.registrationTitle}
       </h2>
 
       {state.errors?.general && (

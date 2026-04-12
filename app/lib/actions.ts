@@ -6,7 +6,6 @@ import { SessionId } from "./types";
 
 export type FormState = {
   success: boolean;
-  isWaitingList: boolean;
   message: string;
   errors?: {
     firstName?: string;
@@ -40,7 +39,6 @@ export async function registerAction(
   if (Object.keys(errors).length > 0) {
     return {
       success: false,
-      isWaitingList: false,
       message: "Please fix the errors below",
       errors,
     };
@@ -64,7 +62,6 @@ export async function registerAction(
     console.error("Registration error:", error);
     return {
       success: false,
-      isWaitingList: false,
       message: "An error occurred. Please try again.",
       errors: {
         general: "Failed to process registration",
