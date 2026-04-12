@@ -483,19 +483,15 @@ export default async function WorkshopHome({ language }: WorkshopHomeProps) {
                 const contentSession = content.sessions[index];
                 const stats = sessionStats[session.id];
 
-                return (
-                  <Link
-                    key={session.id}
-                    href={`/register?session=${session.id}&lang=${language}`}
-                    className="group relative overflow-hidden rounded-2xl border-2 border-purple-300 hover:border-pink-500 transition-all duration-300 hover:shadow-2xl hover:scale-[1.02] bg-white dark:bg-zinc-800"
-                  >
+                const cardContent = (
+                  <>
                     {/* Session Image */}
                     <div className="relative aspect-[4/3] w-full overflow-hidden bg-gradient-to-br from-purple-100 to-pink-100 dark:from-zinc-700 dark:to-zinc-800">
                       <Image
                         src={session.image}
                         alt={contentSession.book}
                         fill
-                        className="object-contain group-hover:scale-105 transition-transform duration-300"
+                        className={`object-contain transition-transform duration-300 ${!stats.isFull ? 'group-hover:scale-105' : ''}`}
                       />
                       {/* Exhibition badge for last session */}
                       {session.isExhibition && (
@@ -523,8 +519,8 @@ export default async function WorkshopHome({ language }: WorkshopHomeProps) {
                       {/* Availability Badge */}
                       <div className="pt-1">
                         {stats.isFull ? (
-                          <span className="inline-flex items-center gap-1 rounded-full bg-amber-100 dark:bg-amber-900/30 px-2 py-0.5 text-xs font-medium text-amber-700 dark:text-amber-400">
-                            ⏳ {t.waitingList}
+                          <span className="inline-flex items-center gap-1 rounded-full bg-red-100 dark:bg-red-900/30 px-2 py-0.5 text-xs font-medium text-red-700 dark:text-red-400">
+                            🚫 {t.registrationFull}
                           </span>
                         ) : (
                           <span className="inline-flex items-center gap-1 rounded-full bg-green-100 dark:bg-green-900/30 px-2 py-0.5 text-xs font-medium text-green-700 dark:text-green-400">
@@ -535,11 +531,38 @@ export default async function WorkshopHome({ language }: WorkshopHomeProps) {
                       
                       {/* CTA Button */}
                       <div className="pt-1">
-                        <span className="w-full text-center rounded-full bg-gradient-to-r from-pink-500 to-orange-500 px-3 py-1.5 text-xs font-bold text-white group-hover:from-pink-600 group-hover:to-orange-600 transition-all shadow-lg group-hover:shadow-xl flex items-center justify-center gap-1">
-                          <span>🎨</span> {stats.isFull ? t.joinWaitingList : t.registerNow} <span>→</span>
-                        </span>
+                        {stats.isFull ? (
+                          <span className="w-full text-center rounded-full bg-gray-300 dark:bg-gray-600 px-3 py-1.5 text-xs font-bold text-gray-500 dark:text-gray-400 flex items-center justify-center gap-1 cursor-not-allowed">
+                            🚫 {t.full}
+                          </span>
+                        ) : (
+                          <span className="w-full text-center rounded-full bg-gradient-to-r from-pink-500 to-orange-500 px-3 py-1.5 text-xs font-bold text-white group-hover:from-pink-600 group-hover:to-orange-600 transition-all shadow-lg group-hover:shadow-xl flex items-center justify-center gap-1">
+                            <span>🎨</span> {t.registerNow} <span>→</span>
+                          </span>
+                        )}
                       </div>
                     </div>
+                  </>
+                );
+
+                if (stats.isFull) {
+                  return (
+                    <div
+                      key={session.id}
+                      className="relative overflow-hidden rounded-2xl border-2 border-gray-300 dark:border-gray-600 opacity-60 bg-white dark:bg-zinc-800 cursor-not-allowed"
+                    >
+                      {cardContent}
+                    </div>
+                  );
+                }
+
+                return (
+                  <Link
+                    key={session.id}
+                    href={`/register?session=${session.id}&lang=${language}`}
+                    className="group relative overflow-hidden rounded-2xl border-2 border-purple-300 hover:border-pink-500 transition-all duration-300 hover:shadow-2xl hover:scale-[1.02] bg-white dark:bg-zinc-800"
+                  >
+                    {cardContent}
                   </Link>
                 );
               })}
